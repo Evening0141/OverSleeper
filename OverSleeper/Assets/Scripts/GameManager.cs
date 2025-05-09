@@ -48,18 +48,6 @@ public class GameManager : MonoBehaviour
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
     }
-
-    // シーン名からSceneTypeを判定
-    private SceneType GetSceneType(string sceneName)
-    {
-        return sceneName switch
-        {
-            "Title" => SceneType.Title,
-            "Game" => SceneType.Game,
-            "GameOver" => SceneType.GameOver,
-            _ => SceneType.Unknown,
-        };
-    }
     // シーン読み込み後に呼ばれる
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
