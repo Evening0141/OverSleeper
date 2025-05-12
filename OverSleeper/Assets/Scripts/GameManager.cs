@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     #region Field
+    [Header("UIManagerスクリプト"),SerializeField] UIManager manager_UI;
+
     private static GameManager instance; // Singletonインスタンス
 
     FadeInOut fade;  // フェード機能
@@ -51,7 +53,10 @@ public class GameManager : MonoBehaviour
     // シーン読み込み後に呼ばれる
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        switch (scene.name)
+        // コンポーネント取得とかのスタートメソッドを任意で呼び出す
+        Ready();
+        
+        switch (scene.name)　// enumのセットをここで
         {
             case "Title":
                 type = SceneType.Title;
@@ -93,8 +98,8 @@ public class GameManager : MonoBehaviour
     private void HandleTitleScene()
     {
         Debug.Log("タイトルシーンに遷移しました");
-        fade = FadeInOut.CreateInstance(); // フェードオブジェクトの生成
-        fade.LoadScene("Game");
+       // fade = FadeInOut.CreateInstance(); // フェードオブジェクトの生成
+       // fade.LoadScene("Game");
         // 
     }
 
@@ -108,5 +113,12 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("ゲームオーバーシーンに遷移しました");
         // 
+    }
+
+
+    // 任意でスタートメソッドをよびだしたいので
+    private void Ready()
+    {
+        manager_UI.UIStart();
     }
 }
