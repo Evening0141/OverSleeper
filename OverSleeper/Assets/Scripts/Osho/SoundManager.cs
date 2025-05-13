@@ -1,33 +1,104 @@
-using System.Collections;
-using System.Collections.Generic;
+ï»¿using System;
 using UnityEngine;
-using System;
 
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
-    public SoundGroup[] soundGroups; //SoundiBGM,SEj‚Ì”z—ñ
 
-    public void Play(string groupName, string soundName)
+    [Header("AudioSourceã®ã¤ã„ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŒ‡å®š")]
+    [SerializeField] private GameObject bgmObject; 
+    [SerializeField] private GameObject seObject;
+
+    public SoundGroup[] soundGroups; //BGM,SEã®Soundå¤‰æ•°ã®é…åˆ—
+
+    private AudioSource bgmSource;
+    private AudioSource seSource;
+
+    private void Awake()
     {
-        Sound sound = FindSound(groupName, soundName); //Find‚ÅŒŸõ‚µAsound‚É‘ã“ü
-        if (sound != null)//sound‚ª‘¶İ‚µ‚Ä‚¢‚é‚È‚ç
-            sound.audiosr.Play();//‹N“®
+        // ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
+
+        // AudioSourceã®å–å¾—
+        if (bgmObject != null)
+        {
+            bgmSource = bgmObject.GetComponent<AudioSource>();
+            if (bgmSource != null)
+                bgmSource.loop = true;
+        }
+
+        if (seObject != null)
+        {
+            seSource = seObject.GetComponent<AudioSource>();
+            if (seSource != null)
+                seSource.loop = false;
+        }
+
+        if (bgmSource == null || seSource == null)
+        {
+            Debug.LogError("AudioSource ãŒæ­£ã—ãè¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ï¼");
+        }
     }
 
-    public void Stop(string groupName, string soundName)
+    public void PlayBGM(string soundName)//PlayBGMãƒ¡ã‚½ãƒƒãƒ‰ã‚’åˆ¥ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§å‘¼å‡ºã—
     {
-        Sound sound = FindSound(groupName, soundName); //Find‚ÅŒŸõ‚µAsound‚É‘ã“ü
-        if (sound != null) //sound‚ª‘¶İ‚µ‚Ä‚¢‚é‚È‚ç
-            sound.audiosr.Stop();//’â~
+        Sound sound = FindSound("BGM", soundName);
+        if (sound != null && bgmSource != null)
+        {
+            bgmSource.clip = sound.clip;
+            bgmSource.volume = sound.volume;
+            bgmSource.loop = sound.loop;
+            bgmSource.Play();
+        }
+        else
+        {
+            Debug.LogWarning("BGMãŒå†ç”Ÿã§ãã¾ã›ã‚“: " + soundName);//è­¦å‘Šã‚¨ãƒ©ãƒ¼
+        }
     }
+
+    public void StopBGM()//åˆ¥ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§å‘¼å‡ºã—
+    {
+        if (bgmSource != null)
+            bgmSource.Stop();
+    }
+
+    public void PlaySE(string soundName)//åˆ¥ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§è‰¯ã„â’·å°sã€‚
+    {
+        Sound sound = FindSound("SE", soundName);
+        if (sound != null && seSource != null)
+        {
+            seSource.PlayOneShot(sound.clip, sound.volume);
+        }
+        else
+        {
+            Debug.LogWarning("SEãŒå†ç”Ÿã§ãã¾ã›ã‚“: " + soundName);
+        }
+    }
+
     private Sound FindSound(string groupName, string soundName)
     {
-        SoundGroup group = Array.Find(soundGroups, g => g.groupname == groupName); //groupname‚ğFind
-        if (group == null) { Debug.LogWarning("ƒGƒ‰[”­¶"); return null; }//ŒxƒGƒ‰[•\¦—p
+        SoundGroup group = Array.Find(soundGroups, g => g.groupname == groupName);
+        if (group == null)
+        {
+            Debug.LogWarning("SoundGroupãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“: " + groupName);//è­¦å‘Šã‚¨ãƒ©ãƒ¼
+            return null;
+        }
 
-        Sound sound = Array.Find(group.sounds, s => s.name == soundName);//soundname‚ğFind
-        if (sound == null) { Debug.LogWarning("ƒGƒ‰[”­¶"); return null; }//ŒxƒGƒ‰[•\¦—p
+        Sound sound = Array.Find(group.sounds, s => s.name == soundName);
+        if (sound == null)
+        {
+            Debug.LogWarning("SoundãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“: " + soundName);//è­¦å‘Šã‚¨ãƒ©ãƒ¼
+        }
 
         return sound;
     }
