@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
     MasterKey masterVol;
     BGMKey bgmVol;
     SEKey seVol;
+
+    private SelectButton[] selButtons; // UIButtonの配列
     public void UIStart()
     {
         // コンポーネント取得
@@ -27,11 +29,26 @@ public class UIManager : MonoBehaviour
         masterVol = GameObject.Find("MasterMusicSlider").GetComponent<MasterKey>();
         bgmVol = GameObject.Find("BGMMusicSlider").GetComponent<BGMKey>();
         seVol = GameObject.Find("SEMusicSlider").GetComponent<SEKey>();
+
+        // シーン内のボタン処理を読み込む
+        selButtons = FindObjectsOfType<SelectButton>(true);
+
+        // 各SelectButtonのStartを呼び出す
+        foreach (var button in selButtons)
+        {
+            button.ButtonStart();
+        }
     }
 
     // Update is called once per frame
-    void Update()
+    public void UIUpdate()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            foreach (var button in selButtons)
+            {
+                button.ButtonUpdate();
+            }
+        }
     }
 }
