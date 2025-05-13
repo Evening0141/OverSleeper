@@ -22,6 +22,10 @@ public class GameManager : MonoBehaviour
     FadeInOut fade;  // フェード機能
     #endregion
 
+    /// <summary>
+    /// シート遷移した時の機能
+    /// </summary>
+    #region 
     void Awake()
     {
         // Singletonパターン: 他のUIManagerが既に存在する場合、現在のインスタンスを削除
@@ -66,6 +70,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+    #endregion
 
     private void Start()
     {
@@ -93,7 +98,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // 任意でスタートメソッドをよびだしたいので
+    private void Ready()
+    {
+        manager_UI.UIStart();
+    }
+
     // 各シーンごとの処理
+    #region Scene
     private void HandleTitleScene()
     {
         Debug.Log("タイトルシーンに遷移しました");
@@ -117,11 +129,5 @@ public class GameManager : MonoBehaviour
         Debug.Log("ゲームオーバーシーンに遷移しました");
         // 
     }
-
-
-    // 任意でスタートメソッドをよびだしたいので
-    private void Ready()
-    {
-        manager_UI.UIStart();
-    }
+    #endregion
 }
