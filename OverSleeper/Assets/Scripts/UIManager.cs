@@ -45,6 +45,7 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            // ƒ{ƒ^ƒ“‚ÌŽÀ‘•
             foreach (var button in selButtons)
             {
                 button.ButtonUpdate();

@@ -10,35 +10,41 @@ public class SelectButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     private bool isHolding = false;
 
+    #region Interface
     public void OnPointerEnter(PointerEventData eventData)
     {
-        // 表示
-        selImg.enabled = true;
-        isHolding = true;
+        selImg.enabled = true;   // 表示
+        isHolding = true;        // 触れている
         Debug.Log("UIに触れた");
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        // 非表示
-        selImg.enabled = false;
-        isHolding = false;
+        selImg.enabled = false;　// 非表示
+        isHolding = false;       // 触れていない
         Debug.Log("UIから離れた");
     }
+    #endregion
 
+    /// <summary>
+    /// これをManagerにて呼び出し実行
+    /// </summary>
     public void ButtonStart()
     {
-        Debug.Log("AAA");
         // 子オブジェクトの中から IChildBehavior を探す
         child = GetComponentInChildren<IChildBehavior>();
     }
 
+    /// <summary>
+    /// これをManagerにて呼び出し実行
+    /// </summary>
     public void ButtonUpdate()
     {
         if (isHolding)
         {
             if (child != null)
             {
+                // 実行
                 child.Execute();
             }
             else
@@ -47,5 +53,4 @@ public class SelectButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             }
         }
     }
-
 }
