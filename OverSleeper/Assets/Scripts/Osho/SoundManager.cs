@@ -6,7 +6,7 @@ using System;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
-    public SoundGroup[] soundGroups;
+    public SoundGroup[] soundGroups; //SoundiBGM,SEj‚Ì”z—ñ
 
     public void Play(string groupName, string soundName)
     {
