@@ -106,6 +106,7 @@ public class GameManager : MonoBehaviour
 
     // 各シーンごとの処理
     #region Scene
+    // タイトルからGameへのシーン遷移はStartKeyスクリプトにて実行
     private void HandleTitleScene()
     {
         Debug.Log("タイトルシーンに遷移しました");
@@ -121,6 +122,9 @@ public class GameManager : MonoBehaviour
     private void HandleGameScene()
     {
         Debug.Log("ゲームシーンに遷移しました");
+        Ready();
+        manager_UI.UIUpdate();
+
         // 
     }
 
