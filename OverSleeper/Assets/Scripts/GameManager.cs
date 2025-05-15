@@ -1,17 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     #region Field
-    [Header("UIManagerスクリプト"),SerializeField] UIManager manager_UI;
-
-    private static GameManager instance; // Singletonインスタンス
-
-    FadeInOut fade;  // フェード機能
-
     // シーンごとに機能を変更していく
     private enum SceneType
     {
@@ -23,8 +15,17 @@ public class GameManager : MonoBehaviour
 
     // タイトルからはじめる
     SceneType type = SceneType.Title;
+
+    [Header("UIManagerスクリプト"), SerializeField] UIManager manager_UI;
+
+    private static GameManager instance; // Singletonインスタンス
+    FadeInOut fade;  // フェード機能
     #endregion
 
+    /// <summary>
+    /// シート遷移した時の機能
+    /// </summary>
+    #region 
     void Awake()
     {
         // Singletonパターン: 他のUIManagerが既に存在する場合、現在のインスタンスを削除
@@ -52,10 +53,7 @@ public class GameManager : MonoBehaviour
     }
     // シーン読み込み後に呼ばれる
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // コンポーネント取得とかのスタートメソッドを任意で呼び出す
-        Ready();
-        
+    {        
         switch (scene.name)　// enumのセットをここで
         {
             case "Title":
@@ -71,6 +69,13 @@ public class GameManager : MonoBehaviour
                 Debug.LogWarning("未定義のシーン: " + scene.name);
                 break;
         }
+    }
+    #endregion
+
+    private void Start()
+    {
+        QualitySettings.vSyncCount = 0; // VSyncを無効化
+        Application.targetFrameRate = 60; // 60FPSに設定
     }
     private void Update()
     {
@@ -91,21 +96,35 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+    }
 
+    // 任意でスタートメソッドをよびだしたいので
+    private void Ready()
+    {
+        manager_UI.UIStart();
     }
 
     // 各シーンごとの処理
+    #region Scene
+    // タイトルからGameへのシーン遷移はStartKeyスクリプトにて実行
     private void HandleTitleScene()
     {
         Debug.Log("タイトルシーンに遷移しました");
-       // fade = FadeInOut.CreateInstance(); // フェードオブジェクトの生成
-       // fade.LoadScene("Game");
+        // コンポーネント取得とかのスタートメソッドを任意で呼び出す
+        Ready();
+        manager_UI.UIUpdate();
+
+        //fade = FadeInOut.CreateInstance(); // フェードオブジェクトの生成
+        //fade.LoadScene("Game");
         // 
     }
 
     private void HandleGameScene()
     {
         Debug.Log("ゲームシーンに遷移しました");
+        Ready();
+        manager_UI.UIUpdate();
+
         // 
     }
 
@@ -114,11 +133,5 @@ public class GameManager : MonoBehaviour
         Debug.Log("ゲームオーバーシーンに遷移しました");
         // 
     }
-
-
-    // 任意でスタートメソッドをよびだしたいので
-    private void Ready()
-    {
-        manager_UI.UIStart();
-    }
+    #endregion
 }
