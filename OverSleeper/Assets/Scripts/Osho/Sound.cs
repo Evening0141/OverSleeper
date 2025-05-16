@@ -7,8 +7,8 @@ using UnityEngine;
 public class Sound
 {
     public string name;@//•¶š—ñŒ^‚Ì•Ï”name
-    public AudioClip clip; //AudioClip
+    public AudioClip clip; //AudioClip 
     [HideInInspector]@public AudioSource audiosr;//“à•”‚Å¶¬‚·‚éBHide‚É‚µ‚Ä‘¼‚©‚çŒ©‚ê‚È‚¢‚æ‚¤‚É
-    public float volume = 1.0f;
-    public bool loop = false;
+    public float volume = 1.0f; //‰¹—Êİ’è
+    public bool loop = false; //Loopˆ—
 }

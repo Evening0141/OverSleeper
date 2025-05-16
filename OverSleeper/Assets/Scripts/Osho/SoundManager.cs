@@ -6,13 +6,13 @@ public class SoundManager : MonoBehaviour
     public static SoundManager instance;
 
     [Header("AudioSourceのついたオブジェクトを指定")]
-    [SerializeField] private GameObject bgmObject; 
-    [SerializeField] private GameObject seObject;
+    [SerializeField] private GameObject bgmObj; 
+    [SerializeField] private GameObject seObj;
 
     public SoundGroup[] soundGroups; //BGM,SEのSound変数の配列
 
-    private AudioSource bgmSource;
-    private AudioSource seSource;
+    private AudioSource bgmSource; //BGMのAudioSource
+    private AudioSource seSource;//SEのAudioSource
 
     private void Awake()
     {
@@ -27,30 +27,30 @@ public class SoundManager : MonoBehaviour
             return;
         }
 
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject); //シーンを跨ぐ際に消えないようにする処理。要らんかも
 
         // AudioSourceの取得
-        if (bgmObject != null)
+        if (bgmObj != null) 
         {
-            bgmSource = bgmObject.GetComponent<AudioSource>();
+            bgmSource = bgmObj.GetComponent<AudioSource>();
             if (bgmSource != null)
                 bgmSource.loop = true;
         }
 
-        if (seObject != null)
+        if (seObj != null)
         {
-            seSource = seObject.GetComponent<AudioSource>();
+            seSource = seObj.GetComponent<AudioSource>();
             if (seSource != null)
                 seSource.loop = false;
         }
 
         if (bgmSource == null || seSource == null)
         {
-            Debug.LogError("AudioSource が正しく設定されていません！");
+            Debug.LogError("AudioSource が正しく設定されていません！");//一応の警告エラー
         }
     }
 
-    public void PlayBGM(string soundName)//PlayBGMメソッドを別のスクリプトで呼出し
+    public void PlayBGM(string soundName)//別のスクリプトで呼び出す。書式→SoundManager.instance.PlayBGM(" ");
     {
         Sound sound = FindSound("BGM", soundName);
         if (sound != null && bgmSource != null)
@@ -72,7 +72,7 @@ public class SoundManager : MonoBehaviour
             bgmSource.Stop();
     }
 
-    public void PlaySE(string soundName)//別のスクリプトで良いⒷ台s。
+    public void PlaySE(string soundName)//別のスクリプトで呼び出す。書式→SoundManager.instance.PlayBGM(" ");
     {
         Sound sound = FindSound("SE", soundName);
         if (sound != null && seSource != null)
