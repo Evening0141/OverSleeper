@@ -87,7 +87,7 @@ public class SoundManager : MonoBehaviour
 
     private Sound FindSound(string groupName, string soundName)
     {
-        SoundGroup group = Array.Find(soundGroups, g => g.groupname == groupName);
+        SoundGroup group = Array.Find(soundGroups, g => g.groupname == groupName);//soundGroupからGroupnameと一致する値を探す。
         if (group == null)
         {
             Debug.LogWarning("SoundGroupが見つかりません: " + groupName);//警告エラー

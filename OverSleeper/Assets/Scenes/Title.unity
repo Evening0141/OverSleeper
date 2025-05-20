@@ -1134,23 +1134,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee64d74cfe4592429d07e0293809251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bgmObj: {fileID: 0}
+  seObj: {fileID: 0}
   soundGroups:
   - groupname: BGM
     sounds:
     - name: "\u30B2\u30FC\u30E0BGM"
       clip: {fileID: 0}
       audiosr: {fileID: 0}
+      volume: 1
+      loop: 0
     - name: "\u30BF\u30A4\u30C8\u30EBBGM"
       clip: {fileID: 0}
       audiosr: {fileID: 0}
+      volume: 1
+      loop: 0
   - groupname: SE
     sounds:
     - name: Jump
       clip: {fileID: 0}
       audiosr: {fileID: 0}
+      volume: 1
+      loop: 0
     - name: Walk
       clip: {fileID: 0}
       audiosr: {fileID: 0}
+      volume: 1
+      loop: 0
 --- !u!4 &973996291
 Transform:
   m_ObjectHideFlags: 0
@@ -1581,7 +1591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.61113083, g: 0.9716981, b: 0.7578636, a: 1}
+  m_Color: {r: 0.8490566, g: 0.8007188, b: 0.5660377, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
