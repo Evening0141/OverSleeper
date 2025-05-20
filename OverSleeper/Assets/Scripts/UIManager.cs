@@ -49,8 +49,8 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    public void UIUpdate()
+    // GameManager‚ÅŒÄ‚Ño‚·UpdateŠÖ”‚Ì‘ã‘Ö
+    public void UIGeneralUp()
     {
         // ƒ{ƒ^ƒ“‚ÌÀ‘•
         if (Input.GetMouseButtonDown(0))
