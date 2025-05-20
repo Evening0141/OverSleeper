@@ -11,10 +11,13 @@ public class LocalUIManager : MonoBehaviour
     // UIManagerはTitleシーンからの継続させるので
     // ここはデバッグ用に置いてあります
 #if UNITY_EDITOR
+    private SelectButton[] selButtons; // UIButtonの配列
+    GameObject debugBlocker;
+
     private void Start()
     {
         // 実行時に特定オブジェクトを探す
-        GameObject debugBlocker = GameObject.Find("UIManager");
+        debugBlocker = GameObject.Find("UIManager");
 
         if (debugBlocker != null)
         {
@@ -29,10 +32,33 @@ public class LocalUIManager : MonoBehaviour
         {
             text.TextSpace();
         }
+
+        // シーン内のボタン処理を読み込む
+        selButtons = FindObjectsOfType<SelectButton>(true);
+
+        // 各SelectButtonのStartを呼び出す
+        foreach (var button in selButtons)
+        {
+            button.ButtonStart();
+        }
     }
     private void Update()
     {
-        
+        if (debugBlocker != null)
+        {
+            Debug.Log("処理は実行しません");
+            return;  // 処理を止める
+        }
+        // ボタンの実装
+        if (Input.GetMouseButtonDown(0))
+        {
+            // 各スクリプトで条件を満たしているものを実行する
+            // 条件は各selButtonsの中で判定するものとする
+            foreach (var button in selButtons)
+            {
+                button.ButtonUpdate();
+            }
+        }
     }
 #endif
     #endregion
