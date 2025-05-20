@@ -9,21 +9,24 @@ public class ButtonManager : MonoBehaviour,
     IPointerExitHandler,
     IPointerClickHandler
 {
-    public Image image;
+    public Image image;         //ボタンにしたいImageを入れるためのモノ
 
-    private Color32 pink = new Color32(255, 123, 255, 255);
-    private RectTransform buttonRect;
+    private Color32 pink = new Color32(255, 123, 255, 255);         //ピンク
+    private RectTransform buttonRect;           //ボタンのrecttransform
 
+    //カーソルがImageに来た時の処理
     public void OnPointerEnter(PointerEventData eventData)
     {
         image.color = pink;
     }
 
+    //カーソルがImageから離れた時の処理
     public void OnPointerExit(PointerEventData eventData)
     {
         image.color = Color.white;
     }
 
+    //カーソルがImageをクリックした時の処理
     public void OnPointerClick(PointerEventData eventData)
     {
         image.color = Color.yellow;
