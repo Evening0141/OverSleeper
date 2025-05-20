@@ -5,6 +5,6 @@ using UnityEngine;
 [System.Serializable]//‚±‚ê‚ª‚È‚¢‚ÆSoundManager‚Ìinspector‚É•\¦‚³‚ê‚È‚¢‚½‚ß
 public class SoundGroup
 {
-    public string groupname; //BGM or SE‚©
-    public Sound[] sounds; 
+    public string groupname; //BGM or SE‚©‚ğ”»’f‚·‚é‚½‚ß‚Ì•Ï”
+    public Sound[] sounds; //‚»‚ê‚¼‚ê‚ÌSoundŠÖ˜A‚Ì”z—ñ
 }
