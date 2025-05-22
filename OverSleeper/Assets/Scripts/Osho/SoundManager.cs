@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager instance;
+    //シングルトン用変数
+    private static SoundManager instance;
 
     [Header("AudioSourceのついたオブジェクトを指定")]
+
     [SerializeField] private GameObject bgmObj; 
     [SerializeField] private GameObject seObj;
 
@@ -14,18 +16,38 @@ public class SoundManager : MonoBehaviour
     private AudioSource bgmSource; //BGMのAudioSource
     private AudioSource seSource;//SEのAudioSource
 
+    public static SoundManager Instance
+    {
+        get //ゲッターはreturnのみ
+        {
+            
+            //if(instance == null)
+            //{
+            //    instance = (SoundManager)FindObjectOfType(typeof(SoundManager)); //instance変数に何も入っていないならSoundManageスクリプトを入れる。
+            //}
+            return instance;
+        }
+    }
     private void Awake()
     {
-        // シングルトン
-        if (instance == null)
+        if(instance == null)
         {
-            instance = this;
+            instance = this; //Awakeで必ずinstanceに代入する。 
         }
-        else
+        else if (this != instance)
         {
-            Destroy(gameObject);
-            return;
+            Destroy(this.gameObject); return;//入っているならこのGameobjectを消す。
         }
+        //// シングルトン
+        //if (instance == null)
+        //{
+        //    instance = this;
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //    return;
+        //}
 
         //DontDestroyOnLoad(gameObject); //シーンを跨ぐ際に消えないようにする処理。要らんかも
 

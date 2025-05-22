@@ -34,6 +34,10 @@ public class DataRelay : MonoBehaviour
     }
     private void Awake()
     {
+        if(dr == null)
+        {
+            dr = this;
+        }
         if(this != dr) { Destroy(this.gameObject); return; }//“ü‚Á‚Ä‚¢‚é‚È‚ç‚±‚ÌGameobject‚ğÁ‚·B
     }
 }
