@@ -1,23 +1,27 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ServerKey : MonoBehaviour,IChildBehavior
+public class DebugKey : MonoBehaviour, IChildBehavior
 {
     Text levelText;  // レベルを表示するテキスト
     Text moneyText;  // 費用を表示するテキスト
 
-    private int cost;
+    private float cost;
+
     private int level = -1;
 
     // テキスト反映
 
     private void Awake()
     {
-        Cost();
+        level = DataRelay.Dr.debug;
         // 一応チェック
-        if (level == -1) {
+        if (level == -1)
+        {
             Debug.Log("データを正しく受け取れませんでした。");
-            return; }
+            return;
+        }
+        Cost();
         // コンポーネント取得
         Transform child_week = transform.Find("LevelText");
         Transform child_money = transform.Find("moneyText");
@@ -31,7 +35,6 @@ public class ServerKey : MonoBehaviour,IChildBehavior
     // コスト計算
     private void Cost()
     {
-        level = DataRelay.Dr.server;
         cost = Calculation.GetNextLevelCost(level);
     }
 
@@ -39,17 +42,7 @@ public class ServerKey : MonoBehaviour,IChildBehavior
     // 設備ボタンの中のサーバー機能です
     public void Execute()
     {
-        Debug.Log("レベルアップ");
 
-        if (cost<=DataRelay.Dr.money)
-        {
-            // レベルアップ
-            DataRelay.Dr.server++;
-            DataRelay.Dr.money -= cost;
-            Cost();
-            // 表示
-            levelText.text = "Lv." + level.ToString();
-            moneyText.text = "費用:" + cost.ToString() + "万";
-        }
     }
+
 }
