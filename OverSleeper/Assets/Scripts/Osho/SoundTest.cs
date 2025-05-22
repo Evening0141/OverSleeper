@@ -7,7 +7,7 @@ public class SoundTest : MonoBehaviour
 {
     void Start()
     {
-        SoundManager.instance.PlayBGM("タイトルBGM");//テスト
+        SoundManager.Instance.PlayBGM("タイトルBGM");//テスト
     }
 
     // Update is called once per frame
