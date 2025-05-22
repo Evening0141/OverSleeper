@@ -18,18 +18,26 @@ public class SoundManager : MonoBehaviour
 
     public static SoundManager Instance
     {
-        get
+        get //ゲッターはreturnのみ
         {
-            if(instance == null)
-            {
-                instance = (SoundManager)FindObjectOfType(typeof(SoundManager)); //instance変数に何も入っていないならSoundManageスクリプトを入れる。
-            }
+            
+            //if(instance == null)
+            //{
+            //    instance = (SoundManager)FindObjectOfType(typeof(SoundManager)); //instance変数に何も入っていないならSoundManageスクリプトを入れる。
+            //}
             return instance;
         }
     }
     private void Awake()
     {
-        if (this != instance) { Destroy(this.gameObject); return; }//入っているならこのGameobjectを消す。
+        if(instance == null)
+        {
+            instance = this; //Awakeで必ずinstanceに代入する。 
+        }
+        else if (this != instance)
+        {
+            Destroy(this.gameObject); return;//入っているならこのGameobjectを消す。
+        }
         //// シングルトン
         //if (instance == null)
         //{
