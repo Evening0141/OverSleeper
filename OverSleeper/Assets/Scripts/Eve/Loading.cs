@@ -24,10 +24,11 @@ public class Loading : MonoBehaviour
         
         while (!async.isDone)
         {
+            //Scene読み込みの進行度合いに応じてSliderのValueを増加させる
             float progressVal = Mathf.Clamp01(async.progress / 0.9f);
             slider.value = progressVal;
-            float dot = Mathf.Clamp01(async.progress * 3.0f);           //Loading時に表示されるテキストの.の数
-            loadingText.text = "接続中" /*+ ".".Length * dot*/;
+            float dot = Mathf.Clamp01(async.progress * 3.0f);           //Loading時に表示されるテキスト
+            loadingText.text = "接続中";
             yield return null;
         }
     }
