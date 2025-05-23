@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
     private void HandleTitleScene()
     {
         Debug.Log("タイトルシーンに遷移しました");
-        manager_UI.UIUpdate();
+        manager_UI.UIGeneralUp();
 
         //fade = FadeInOut.CreateInstance(); // フェードオブジェクトの生成
         //fade.LoadScene("Game");
@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
     private void HandleGameScene()
     {
         Debug.Log("ゲームシーンに遷移しました");
-        manager_UI.UIUpdate();
+        manager_UI.UIGeneralUp();
         // 
     }
 
