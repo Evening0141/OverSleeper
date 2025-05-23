@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/EVE/OtamesiScene.unity
+    guid: 2bda1ba816ae68e4091e429937cc52cf
+  - enabled: 1
     path: Assets/Scenes/Title.unity
     guid: f39a383c9d1877247a99252246dd1a3f
   - enabled: 1

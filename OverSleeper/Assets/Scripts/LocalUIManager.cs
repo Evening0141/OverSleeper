@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LocalUIManager : MonoBehaviour
@@ -44,6 +42,8 @@ public class LocalUIManager : MonoBehaviour
     }
     private void Update()
     {
+        Debug.Log("現在資金" + DataRelay.Dr.money);
+
         if (debugBlocker != null)
         {
             Debug.Log("処理は実行しません");
@@ -52,6 +52,7 @@ public class LocalUIManager : MonoBehaviour
         // ボタンの実装
         if (Input.GetMouseButtonDown(0))
         {
+
             // 各スクリプトで条件を満たしているものを実行する
             // 条件は各selButtonsの中で判定するものとする
             foreach (var button in selButtons)

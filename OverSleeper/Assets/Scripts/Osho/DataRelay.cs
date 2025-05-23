@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DataRelay : MonoBehaviour
 {
-    public int money = 0; //資金用の変数
+    public int money = 1000; //資金用の変数
     public int maintain = 0; //維持費用の変数
     public int year = 0; //年の変数
     public int week = 0; //週の変数
@@ -34,10 +34,15 @@ public class DataRelay : MonoBehaviour
     }
     private void Awake()
     {
-        if(dr == null)
+        if (dr != null && dr != this)
+        {
+            Destroy(this.gameObject); // 重複を防止
+        }
+        else
         {
             dr = this;
+            DontDestroyOnLoad(this.gameObject); // シーンをまたいでも残す
         }
-        if(this != dr) { Destroy(this.gameObject); return; }//入っているならこのGameobjectを消す。
     }
+
 }
