@@ -50,6 +50,7 @@ public class SelectButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             else
             {
                 Debug.LogWarning("子に IChildBehavior を実装したスクリプトが見つかりません");
+                Debug.Log(this.gameObject.name);
             }
         }
     }
