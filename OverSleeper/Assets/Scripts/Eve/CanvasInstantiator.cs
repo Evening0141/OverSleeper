@@ -5,13 +5,14 @@ using UnityEngine;
 public class CanvasInstantiator : MonoBehaviour
 {
     [SerializeField] private GameObject loadingCanvas;
-    [SerializeField] private Loading loadingCS;
 
     // Start is called before the first frame update
     void Start()
     {
-        string sceneName = "OtamesiScene";
-        Instantiate(loadingCanvas);
+        string sceneName = "Game";
+
+        GameObject canvasInstance = Instantiate(loadingCanvas);
+        Loading loadingCS = canvasInstance.GetComponent<Loading>();
         loadingCS.LoadScene(sceneName);
     }
 }
