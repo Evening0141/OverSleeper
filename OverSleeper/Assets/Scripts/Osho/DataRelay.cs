@@ -4,16 +4,16 @@ public class DataRelay : MonoBehaviour
 {
     private int money = 1000; //資金用の変数
     private int maintain = 0; //維持費用の変数
-    private int year = 0; //年の変数
-    private int week = 0; //週の変数
-    private int user = 0; //ユーザー数の変数
-    private int famous = 0; //人気度の変数
-    private int popular = 0;//知名度の変数
+    private int year = 0;     //年の変数
+    private int month = 0;    //月の変数
+    private int user = 0;     //ユーザー数の変数
+    private int famous = 0;   //人気度の変数
+    private int popular = 0;  //知名度の変数
 
     #region Level
-    private int _server = 1;//サーバーレベル用の変数
-    private int _debug = 1;//デバッグ用の変数
-    private int _sns = 1;//広告用の変数
+    private int _server = 1;  //サーバーレベル用の変数
+    private int _debug = 1;   //デバッグ用の変数
+    private int _sns = 1;     //広告用の変数
     #endregion
 
     //シングルトン用変数
@@ -57,13 +57,13 @@ public class DataRelay : MonoBehaviour
             year = value;
         }
     }
-    public int Week //Weak(週)用のゲッターセッター
+    public int Month //Month(月)用のゲッターセッター
     {
-        get => week;
+        get => month;
         set
         {
-            Debug.Log("week" +week);
-            week = value;
+            Debug.Log("month" + month);
+            month = value;
         }
     }
     public int User //User(ユーザー)用のゲッターセッター

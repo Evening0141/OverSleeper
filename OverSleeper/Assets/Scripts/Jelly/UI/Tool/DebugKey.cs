@@ -6,7 +6,7 @@ public class DebugKey : MonoBehaviour, IChildBehavior
     Text levelText;  // レベルを表示するテキスト
     Text moneyText;  // 費用を表示するテキスト
 
-    private float cost;
+    private int cost;
 
     private int level = -1;
 
@@ -14,14 +14,13 @@ public class DebugKey : MonoBehaviour, IChildBehavior
 
     private void Awake()
     {
-        level = DataRelay.Dr.Debug_;
+        Cost();
         // 一応チェック
         if (level == -1)
         {
             Debug.Log("データを正しく受け取れませんでした。");
             return;
         }
-        Cost();
         // コンポーネント取得
         Transform child_week = transform.Find("LevelText");
         Transform child_money = transform.Find("moneyText");
@@ -35,6 +34,7 @@ public class DebugKey : MonoBehaviour, IChildBehavior
     // コスト計算
     private void Cost()
     {
+        level = DataRelay.Dr.Debug_;
         cost = Calculation.GetNextLevelCost(level);
     }
 
@@ -42,7 +42,18 @@ public class DebugKey : MonoBehaviour, IChildBehavior
     // 設備ボタンの中のサーバー機能です
     public void Execute()
     {
+        Debug.Log("レベルアップ");
 
+        if (cost <= DataRelay.Dr.Money)
+        {
+            // レベルアップ
+            DataRelay.Dr.Debug_++;
+            DataRelay.Dr.Money -= cost;
+            Cost();
+            // 表示
+            levelText.text = "Lv." + level.ToString();
+            moneyText.text = "費用:" + cost.ToString() + "万";
+        }
     }
 
 }
