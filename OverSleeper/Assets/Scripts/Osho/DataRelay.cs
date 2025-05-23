@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DataRelay : MonoBehaviour
@@ -13,9 +11,9 @@ public class DataRelay : MonoBehaviour
     private int popular = 0;//知名度の変数
 
     #region Level
-    public int server = 1;//サーバーレベル用の変数
-    public int debug = 1;//デバッグ用の変数
-    public int sns = 1;//広告用の変数
+    private int _server = 1;//サーバーレベル用の変数
+    private int _debug = 1;//デバッグ用の変数
+    private int _sns = 1;//広告用の変数
     #endregion
 
     //シングルトン用変数
@@ -93,6 +91,34 @@ public class DataRelay : MonoBehaviour
         {
             Debug.Log("popular" +popular);
             popular = value;
+        }
+    }
+    public int Server //設備レベル(サーバー)用のゲッターセッター
+    {
+        get => _server;
+        set
+        {
+            Debug.Log("server" + _server);
+            _server = value;
+        }
+    }
+    // アンダー入れないとエラーになるので
+    public int Debug_ //設備レベル(デバッグ)用のゲッターセッター
+    {
+        get => _debug;
+        set
+        {
+            Debug.Log("debug" + _debug);
+            _debug = value;
+        }
+    }
+    public int Sns //設備レベル(広告)用のゲッターセッター
+    {
+        get => _sns;
+        set
+        {
+            Debug.Log("sns" + _sns);
+            _sns = value;
         }
     }
     private void Awake()

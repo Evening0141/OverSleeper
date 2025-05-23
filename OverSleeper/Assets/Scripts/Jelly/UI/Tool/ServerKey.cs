@@ -31,7 +31,7 @@ public class ServerKey : MonoBehaviour,IChildBehavior
     // コスト計算
     private void Cost()
     {
-        level = DataRelay.Dr.server;
+        level = DataRelay.Dr.Server;
         cost = Calculation.GetNextLevelCost(level);
     }
 
@@ -41,11 +41,11 @@ public class ServerKey : MonoBehaviour,IChildBehavior
     {
         Debug.Log("レベルアップ");
 
-        if (cost<=DataRelay.Dr.money)
+        if (cost<=DataRelay.Dr.Money)
         {
             // レベルアップ
-            DataRelay.Dr.server++;
-            DataRelay.Dr.money -= cost;
+            DataRelay.Dr.Server++;
+            DataRelay.Dr.Money -= cost;
             Cost();
             // 表示
             levelText.text = "Lv." + level.ToString();

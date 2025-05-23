@@ -7011,13 +7011,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b032bfb5db7028e418c0963ff1561dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 1000
-  maintain: 0
-  year: 0
-  week: 0
-  user: 0
-  famous: 0
-  popular: 0
   server: 1
   debug: 1
   sns: 1
