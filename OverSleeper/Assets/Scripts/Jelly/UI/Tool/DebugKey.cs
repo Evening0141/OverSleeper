@@ -14,7 +14,7 @@ public class DebugKey : MonoBehaviour, IChildBehavior
 
     private void Awake()
     {
-        level = DataRelay.Dr.debug;
+        level = DataRelay.Dr.Debug_;
         // 一応チェック
         if (level == -1)
         {
