@@ -41,11 +41,11 @@ public class ServerKey : MonoBehaviour,IChildBehavior
     {
         Debug.Log("レベルアップ");
 
-        if (cost<=DataRelay.Dr.money)
+        if (cost <= DataRelay.Dr.Money);
         {
             // レベルアップ
             DataRelay.Dr.server++;
-            DataRelay.Dr.money -= cost;
+            DataRelay.Dr.Money -= cost;
             Cost();
             // 表示
             levelText.text = "Lv." + level.ToString();

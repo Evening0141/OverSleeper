@@ -42,7 +42,7 @@ public class LocalUIManager : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log("åªç›éëã‡" + DataRelay.Dr.money);
+        Debug.Log("åªç›éëã‡" + DataRelay.Dr.Money);
 
         if (debugBlocker != null)
         {
