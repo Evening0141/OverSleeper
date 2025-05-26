@@ -85,6 +85,7 @@ public class DataRelay : MonoBehaviour
     #region 
     /* 
      ここの値はあくまでも文字列での表示となるが保存しやすいようにintで取り扱い 
+     実際に表示に使うUIMng側で数値から状態テキストに変更してもらう
     */
     // 減少中、一定、上昇中の三項目
     private int user = 1;            // ユーザー数の変数
