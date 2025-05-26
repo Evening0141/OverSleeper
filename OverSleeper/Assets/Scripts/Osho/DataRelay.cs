@@ -129,7 +129,7 @@ public class DataRelay : MonoBehaviour
 
             if (clampedValue != value)
             {
-                Debug.LogWarning($"User値が範囲外のため補正されました: 入力={value}, 補正後={clampedValue}");
+                Debug.LogWarning($"Famous値が範囲外のため補正されました: 入力={value}, 補正後={clampedValue}");
             }
 
             Debug.Log("user: " + clampedValue);
@@ -146,7 +146,7 @@ public class DataRelay : MonoBehaviour
 
             if (clampedValue != value)
             {
-                Debug.LogWarning($"User値が範囲外のため補正されました: 入力={value}, 補正後={clampedValue}");
+                Debug.LogWarning($"Popular値が範囲外のため補正されました: 入力={value}, 補正後={clampedValue}");
             }
 
             Debug.Log("user: " + clampedValue);
