@@ -8,7 +8,7 @@ public class ChangePanelBase : MonoBehaviour
 
     // ƒJƒ‰[•Ï”
     const float beforeColAlpha = 0.0f;
-    const float afterColAlpha = 0.1f;
+    const float afterColAlpha = 0.01f;
 
     public void ChangePanel()
     {

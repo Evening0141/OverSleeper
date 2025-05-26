@@ -1,9 +1,17 @@
 using UnityEngine;
-
+using UnityEngine.UI;
 public class LocalUIManager : MonoBehaviour
 {
     private TextSpacer[] spaceCreate; // 空白文字を追加するスクリプト
-
+    #region UI
+    [Header("資金表示のテキスト"), SerializeField] Text moneyText;
+    [Header("維持費表示のテキスト"), SerializeField] Text maintainText;
+    [Header("年表示のテキスト"), SerializeField] Text yearText;
+    [Header("月表示のテキスト"), SerializeField] Text monthText;
+    [Header("人気度表示のテキスト"), SerializeField] Text famousText;
+    [Header("知名度表示のテキスト"), SerializeField] Text popularText;
+    [Header("ユーザー数表示のテキスト"), SerializeField] Text userText;
+    #endregion  
     // UnityEditorの処理
     #region DEBUG
     // UIManagerはTitleシーンからの継続させるので
@@ -60,6 +68,7 @@ public class LocalUIManager : MonoBehaviour
                 button.ButtonUpdate();
             }
         }
+        UIUpdate();
     }
 #endif
     #endregion
@@ -69,12 +78,32 @@ public class LocalUIManager : MonoBehaviour
     // UIManagerで呼び出す形で作成
     public void LocalStart()
     {
-        // シーン内の処理を読み込む
-        spaceCreate = FindObjectsOfType<TextSpacer>(true);
-        // 処理実行
-        foreach (var text in spaceCreate)
-        {
-            text.TextSpace();
-        }
+        // 空白文字のスクリプト
+        #region
+        //// シーン内の処理を読み込む
+        //spaceCreate = FindObjectsOfType<TextSpacer>(true);
+        //// 処理実行
+        //foreach (var text in spaceCreate)
+        //{
+        //    text.TextSpace();
+        //}
+        #endregion
+        // UI更新
+        UIUpdate();
+    }
+
+
+
+    // 更新
+    private void UIUpdate()
+    {
+        // 初期の反映
+        moneyText.text = DataRelay.Dr.Money.ToString();
+        maintainText.text = DataRelay.Dr.Maintain.ToString();
+        yearText.text = DataRelay.Dr.Year.ToString();
+        monthText.text = DataRelay.Dr.Month.ToString();
+        famousText.text = DataRelay.Dr.Famous.ToString();
+        popularText.text = DataRelay.Dr.Popular.ToString();
+        userText.text = DataRelay.Dr.User.ToString();
     }
 }
