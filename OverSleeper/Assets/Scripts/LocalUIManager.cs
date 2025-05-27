@@ -121,7 +121,6 @@ public class LocalUIManager : MonoBehaviour
     {
         if(status_USER[DataRelay.Dr.User] == "上昇中")
         {
-            Debug.Log("赤");
             ColorChange.ChangeCol(userText);
         }
     }

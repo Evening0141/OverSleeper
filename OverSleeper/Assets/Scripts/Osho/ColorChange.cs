@@ -17,4 +17,5 @@ public static class ColorChange
     {
         text.color = GetFlashRed(speed);
     }
+
 }
