@@ -20,17 +20,12 @@ public class SoundManager : MonoBehaviour
     {
         get //ゲッターはreturnのみ
         {
-            
-            //if(instance == null)
-            //{
-            //    instance = (SoundManager)FindObjectOfType(typeof(SoundManager)); //instance変数に何も入っていないならSoundManageスクリプトを入れる。
-            //}
             return instance;
         }
     }
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this; //Awakeで必ずinstanceに代入する。 
         }
@@ -38,20 +33,8 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(this.gameObject); return;//入っているならこのGameobjectを消す。
         }
-        //// シングルトン
-        //if (instance == null)
-        //{
-        //    instance = this;
-        //}
-        //else
-        //{
-        //    Destroy(gameObject);
-        //    return;
-        //}
 
-        //DontDestroyOnLoad(gameObject); //シーンを跨ぐ際に消えないようにする処理。要らんかも
-
-        // AudioSourceの取得
+        // BGMObjについているAudioSourceの取得
         if (bgmObj != null) 
         {
             bgmSource = bgmObj.GetComponent<AudioSource>();
@@ -59,6 +42,7 @@ public class SoundManager : MonoBehaviour
                 bgmSource.loop = true;
         }
 
+        //SEObjについているAudioSourceの取得
         if (seObj != null)
         {
             seSource = seObj.GetComponent<AudioSource>();
@@ -68,7 +52,7 @@ public class SoundManager : MonoBehaviour
 
         if (bgmSource == null || seSource == null)
         {
-            Debug.LogError("AudioSource が正しく設定されていません！");//一応の警告エラー
+            Debug.LogError("AudioSource が正しく設定されていません！");//一応の警告エラー要らんかも
         }
     }
 
@@ -88,7 +72,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void StopBGM()//別のスクリプトで呼出し
+    public void StopBGM()//止めたいときは別のスクリプトで呼出し
     {
         if (bgmSource != null)
             bgmSource.Stop();
@@ -99,7 +83,7 @@ public class SoundManager : MonoBehaviour
         Sound sound = FindSound("SE", soundName);
         if (sound != null && seSource != null)
         {
-            seSource.PlayOneShot(sound.clip, sound.volume);
+            seSource.PlayOneShot(sound.clip, sound.volume);　//重なって流れてもいいように
         }
         else
         {

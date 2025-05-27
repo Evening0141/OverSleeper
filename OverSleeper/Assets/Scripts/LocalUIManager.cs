@@ -3,6 +3,9 @@ using UnityEngine.UI;
 public class LocalUIManager : MonoBehaviour
 {
     private TextSpacer[] spaceCreate; // 空白文字を追加するスクリプト
+
+    //MoneyRelayスクリプト呼び出し用
+    MoneyRelay moneyrelay;
     #region UI
     [Header("資金表示のテキスト"), SerializeField] Text moneyText;
     [Header("維持費表示のテキスト"), SerializeField] Text maintainText;
@@ -27,6 +30,7 @@ public class LocalUIManager : MonoBehaviour
 
     private void Start()
     {
+        moneyrelay = new MoneyRelay(); //Monovi形式じゃないのでnewで代入
         // 実行時に特定オブジェクトを探す
         debugBlocker = GameObject.Find("UIManager");
 
@@ -55,8 +59,9 @@ public class LocalUIManager : MonoBehaviour
     }
     private void Update()
     {
+        moneyrelay.MoneyGrow();
+        Debug.Log("上昇資金"+ moneyrelay.money);
         Debug.Log("現在資金" + DataRelay.Dr.Money);
-
         if (debugBlocker != null)
         {
             Debug.Log("処理は実行しません");
@@ -112,33 +117,16 @@ public class LocalUIManager : MonoBehaviour
         maintainText.text = data.Maintain.ToString();
         yearText.text = data.Year.ToString();
         monthText.text = data.Month.ToString();
-        famousText.text = GenerateStars(data.Famous);
+        famousText.text = GenerateStars.Generate(data.Famous);
         popularText.text = status_POPULAR[data.Popular];
         userText.text = status_USER[data.User];
     }
-
-
-    // 人気度の星を出力する処理
-    public string GenerateStars(int value)
+    //テキストカラー変更用
+    private void ColDisp()
     {
-        // 最大値を制限
-        int max = 5;
-        value = Mathf.Clamp(value, 0, max); // 0〜5に制限
-
-        string result = "";
-
-        // ★を追加
-        for (int i = 0; i < value; i++)
+        if(status_USER[DataRelay.Dr.User] == "上昇中")
         {
-            result += "★";
+            ColorChange.ChangeCol(userText);
         }
-
-        // ☆を追加
-        for (int i = 0; i < max - value; i++)
-        {
-            result += "☆";
-        }
-
-        return result;
     }
 }
