@@ -8,7 +8,10 @@ public class UIManager : MonoBehaviour
     SEKey seVol;
 
     private SelectButton[] selButtons; // UIButtonの配列
-    public void UIStart()
+
+    private LocalUIManager localUISc;
+    // シーン共通機能の呼び出し
+    public void GeneralCall()
     {
         // コンポーネント取得
         Find();
@@ -16,6 +19,14 @@ public class UIManager : MonoBehaviour
         masterVol.LOAD();
         bgmVol.LOAD();
         seVol.LOAD();
+    }
+    // ローカルで作成している機能をここで呼び出し
+    public void LocalCall_GAME()
+    {
+        // コンポーネント取得
+        localUISc = GameObject.Find("LocalUIManager").GetComponent<LocalUIManager>();
+        // 実行
+        localUISc.LocalStart();
     }
 
     /// <summary>
@@ -38,12 +49,14 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    public void UIUpdate()
+    // GameManagerで呼び出すUpdate関数の代替
+    public void UIGeneralUp()
     {
+        // ボタンの実装
         if (Input.GetMouseButtonDown(0))
         {
-            // ボタンの実装
+            // 各スクリプトで条件を満たしているものを実行する
+            // 条件は各selButtonsの中で判定するものとする
             foreach (var button in selButtons)
             {
                 button.ButtonUpdate();

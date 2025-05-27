@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class ButtonManager : MonoBehaviour,
@@ -9,27 +8,24 @@ public class ButtonManager : MonoBehaviour,
     IPointerExitHandler,
     IPointerClickHandler
 {
-    public Image image;         //ボタンにしたいImageを入れるためのモノ
-
-    private Color32 pink = new Color32(255, 123, 255, 255);         //ピンク
-    private RectTransform buttonRect;           //ボタンのrecttransform
+    public ButtonController buttonController;     //ボタンの処理を実行するスクリプト
 
     //カーソルがImageに来た時の処理
     public void OnPointerEnter(PointerEventData eventData)
     {
-        image.color = pink;
+        buttonController.OnEnterCursor();
     }
 
     //カーソルがImageから離れた時の処理
     public void OnPointerExit(PointerEventData eventData)
     {
-        image.color = Color.white;
+        buttonController.OnExitCursor();
     }
 
     //カーソルがImageをクリックした時の処理
     public void OnPointerClick(PointerEventData eventData)
     {
-        image.color = Color.yellow;
+        buttonController.OnClickCursor();
     }
 
 }

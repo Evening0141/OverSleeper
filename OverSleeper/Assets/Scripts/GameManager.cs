@@ -58,9 +58,16 @@ public class GameManager : MonoBehaviour
         {
             case "Title":
                 type = SceneType.Title;
+                // コンポーネント取得とかのスタートメソッドを任意で呼び出す
+                Ready();
                 break;
             case "Game":
-                type = SceneType.Game; 
+                type = SceneType.Game;
+                // コンポーネント取得とかのスタートメソッドを任意で呼び出す
+                Ready();
+                // 一回のみ実行
+                manager_UI.LocalCall_GAME();
+
                 break;
             case "GameOver":
                 type = SceneType.GameOver;
@@ -101,7 +108,7 @@ public class GameManager : MonoBehaviour
     // 任意でスタートメソッドをよびだしたいので
     private void Ready()
     {
-        manager_UI.UIStart();
+        manager_UI.GeneralCall();
     }
 
     // 各シーンごとの処理
@@ -110,9 +117,7 @@ public class GameManager : MonoBehaviour
     private void HandleTitleScene()
     {
         Debug.Log("タイトルシーンに遷移しました");
-        // コンポーネント取得とかのスタートメソッドを任意で呼び出す
-        Ready();
-        manager_UI.UIUpdate();
+        manager_UI.UIGeneralUp();
 
         //fade = FadeInOut.CreateInstance(); // フェードオブジェクトの生成
         //fade.LoadScene("Game");
@@ -122,9 +127,7 @@ public class GameManager : MonoBehaviour
     private void HandleGameScene()
     {
         Debug.Log("ゲームシーンに遷移しました");
-        Ready();
-        manager_UI.UIUpdate();
-
+        manager_UI.UIGeneralUp();
         // 
     }
 
