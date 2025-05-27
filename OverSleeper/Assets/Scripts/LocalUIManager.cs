@@ -1,48 +1,53 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 public class LocalUIManager : MonoBehaviour
 {
-    private TextSpacer[] spaceCreate; // ‹ó”’•¶š‚ğ’Ç‰Á‚·‚éƒXƒNƒŠƒvƒg
+    private TextSpacer[] spaceCreate; // ç©ºç™½æ–‡å­—ã‚’è¿½åŠ ã™ã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
     #region UI
-    [Header("‘‹à•\¦‚ÌƒeƒLƒXƒg"), SerializeField] Text moneyText;
-    [Header("ˆÛ”ï•\¦‚ÌƒeƒLƒXƒg"), SerializeField] Text maintainText;
-    [Header("”N•\¦‚ÌƒeƒLƒXƒg"), SerializeField] Text yearText;
-    [Header("Œ•\¦‚ÌƒeƒLƒXƒg"), SerializeField] Text monthText;
-    [Header("l‹C“x•\¦‚ÌƒeƒLƒXƒg"), SerializeField] Text famousText;
-    [Header("’m–¼“x•\¦‚ÌƒeƒLƒXƒg"), SerializeField] Text popularText;
-    [Header("ƒ†[ƒU[”•\¦‚ÌƒeƒLƒXƒg"), SerializeField] Text userText;
+    [Header("è³‡é‡‘è¡¨ç¤ºã®ãƒ†ã‚­ã‚¹ãƒˆ"), SerializeField] Text moneyText;
+    [Header("ç¶­æŒè²»è¡¨ç¤ºã®ãƒ†ã‚­ã‚¹ãƒˆ"), SerializeField] Text maintainText;
+    [Header("å¹´è¡¨ç¤ºã®ãƒ†ã‚­ã‚¹ãƒˆ"), SerializeField] Text yearText;
+    [Header("æœˆè¡¨ç¤ºã®ãƒ†ã‚­ã‚¹ãƒˆ"), SerializeField] Text monthText;
+    [Header("äººæ°—åº¦è¡¨ç¤ºã®ãƒ†ã‚­ã‚¹ãƒˆ"), SerializeField] Text famousText;
+    [Header("çŸ¥ååº¦è¡¨ç¤ºã®ãƒ†ã‚­ã‚¹ãƒˆ"), SerializeField] Text popularText;
+    [Header("ãƒ¦ãƒ¼ã‚¶ãƒ¼æ•°è¡¨ç¤ºã®ãƒ†ã‚­ã‚¹ãƒˆ"), SerializeField] Text userText;
     #endregion  
-    // UnityEditor‚Ìˆ—
+
+    // DataRelayã‹ã‚‰å€¤ã‚’å—ã‘å–ã‚Šè¦ç´ ç•ªå·ã¨ã™ã‚‹
+    private string[] status_USER = { "æ¸›å°‘ä¸­","ä¸€å®š","ä¸Šæ˜‡ä¸­"};
+    private string[] status_POPULAR = { "F","E","D","C","B","A","S"};
+
+    // UnityEditorã®å‡¦ç†
     #region DEBUG
-    // UIManager‚ÍTitleƒV[ƒ“‚©‚ç‚ÌŒp‘±‚³‚¹‚é‚Ì‚Å
-    // ‚±‚±‚ÍƒfƒoƒbƒO—p‚É’u‚¢‚Ä‚ ‚è‚Ü‚·
+    // UIManagerã¯Titleã‚·ãƒ¼ãƒ³ã‹ã‚‰ã®ç¶™ç¶šã•ã›ã‚‹ã®ã§
+    // ã“ã“ã¯ãƒ‡ãƒãƒƒã‚°ç”¨ã«ç½®ã„ã¦ã‚ã‚Šã¾ã™
 #if UNITY_EDITOR
-    private SelectButton[] selButtons; // UIButton‚Ì”z—ñ
+    private SelectButton[] selButtons; // UIButtonã®é…åˆ—
     GameObject debugBlocker;
 
     private void Start()
     {
-        // Às‚É“Á’èƒIƒuƒWƒFƒNƒg‚ğ’T‚·
+        // å®Ÿè¡Œæ™‚ã«ç‰¹å®šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ¢ã™
         debugBlocker = GameObject.Find("UIManager");
 
         if (debugBlocker != null)
         {
-            Debug.Log("ˆ—‚ÍÀs‚µ‚Ü‚¹‚ñ");
-            return;  // ˆ—‚ğ~‚ß‚é
+            Debug.Log("å‡¦ç†ã¯å®Ÿè¡Œã—ã¾ã›ã‚“");
+            return;  // å‡¦ç†ã‚’æ­¢ã‚ã‚‹
         }
 
-        // ƒV[ƒ““à‚Ìˆ—‚ğ“Ç‚İ‚Ş
+        // ã‚·ãƒ¼ãƒ³å†…ã®å‡¦ç†ã‚’èª­ã¿è¾¼ã‚€
         spaceCreate = FindObjectsOfType<TextSpacer>(true);
-        // ˆ—Às
+        // å‡¦ç†å®Ÿè¡Œ
         foreach (var text in spaceCreate)
         {
             text.TextSpace();
         }
 
-        // ƒV[ƒ““à‚Ìƒ{ƒ^ƒ“ˆ—‚ğ“Ç‚İ‚Ş
+        // ã‚·ãƒ¼ãƒ³å†…ã®ãƒœã‚¿ãƒ³å‡¦ç†ã‚’èª­ã¿è¾¼ã‚€
         selButtons = FindObjectsOfType<SelectButton>(true);
 
-        // ŠeSelectButton‚ÌStart‚ğŒÄ‚Ño‚·
+        // å„SelectButtonã®Startã‚’å‘¼ã³å‡ºã™
         foreach (var button in selButtons)
         {
             button.ButtonStart();
@@ -50,60 +55,90 @@ public class LocalUIManager : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log("Œ»İ‘‹à" + DataRelay.Dr.Money);
+        Debug.Log("ç¾åœ¨è³‡é‡‘" + DataRelay.Dr.Money);
 
         if (debugBlocker != null)
         {
-            Debug.Log("ˆ—‚ÍÀs‚µ‚Ü‚¹‚ñ");
-            return;  // ˆ—‚ğ~‚ß‚é
+            Debug.Log("å‡¦ç†ã¯å®Ÿè¡Œã—ã¾ã›ã‚“");
+            return;  // å‡¦ç†ã‚’æ­¢ã‚ã‚‹
         }
-        // ƒ{ƒ^ƒ“‚ÌÀ‘•
+        // ãƒœã‚¿ãƒ³ã®å®Ÿè£…
         if (Input.GetMouseButtonDown(0))
         {
 
-            // ŠeƒXƒNƒŠƒvƒg‚ÅğŒ‚ğ–‚½‚µ‚Ä‚¢‚é‚à‚Ì‚ğÀs‚·‚é
-            // ğŒ‚ÍŠeselButtons‚Ì’†‚Å”»’è‚·‚é‚à‚Ì‚Æ‚·‚é
+            // å„ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ã‚‚ã®ã‚’å®Ÿè¡Œã™ã‚‹
+            // æ¡ä»¶ã¯å„selButtonsã®ä¸­ã§åˆ¤å®šã™ã‚‹ã‚‚ã®ã¨ã™ã‚‹
             foreach (var button in selButtons)
             {
                 button.ButtonUpdate();
             }
         }
-        UIUpdate();
+        UIDisp();
     }
 #endif
     #endregion
 
 
-    // Mainˆ—‚Í‚±‚±‚©‚ç
-    // UIManager‚ÅŒÄ‚Ño‚·Œ`‚Åì¬
+    // Mainå‡¦ç†ã¯ã“ã“ã‹ã‚‰
+    // UIManagerã§å‘¼ã³å‡ºã™å½¢ã§ä½œæˆ
     public void LocalStart()
     {
-        // ‹ó”’•¶š‚ÌƒXƒNƒŠƒvƒg
+        // ç©ºç™½æ–‡å­—ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
         #region
-        //// ƒV[ƒ““à‚Ìˆ—‚ğ“Ç‚İ‚Ş
+        //// ã‚·ãƒ¼ãƒ³å†…ã®å‡¦ç†ã‚’èª­ã¿è¾¼ã‚€
         //spaceCreate = FindObjectsOfType<TextSpacer>(true);
-        //// ˆ—Às
+        //// å‡¦ç†å®Ÿè¡Œ
         //foreach (var text in spaceCreate)
         //{
         //    text.TextSpace();
         //}
         #endregion
-        // UIXV
-        UIUpdate();
+        // UIæ›´æ–°
+        UIDisp();
+    }
+
+    public void LocalUpdate()
+    {
+
     }
 
 
-
-    // XV
-    private void UIUpdate()
+    // UIè¡¨ç¤º
+    private void UIDisp()
     {
-        // ‰Šú‚Ì”½‰f
-        moneyText.text = DataRelay.Dr.Money.ToString();
-        maintainText.text = DataRelay.Dr.Maintain.ToString();
-        yearText.text = DataRelay.Dr.Year.ToString();
-        monthText.text = DataRelay.Dr.Month.ToString();
-        famousText.text = DataRelay.Dr.Famous.ToString();
-        popularText.text = DataRelay.Dr.Popular.ToString();
-        userText.text = DataRelay.Dr.User.ToString();
+        var data = DataRelay.Dr;
+        // åˆæœŸã®åæ˜ 
+        moneyText.text = data.Money.ToString();
+        maintainText.text = data.Maintain.ToString();
+        yearText.text = data.Year.ToString();
+        monthText.text = data.Month.ToString();
+        famousText.text = GenerateStars(data.Famous);
+        popularText.text = status_POPULAR[data.Popular];
+        userText.text = status_USER[data.User];
+    }
+
+
+    // äººæ°—åº¦ã®æ˜Ÿã‚’å‡ºåŠ›ã™ã‚‹å‡¦ç†
+    public string GenerateStars(int value)
+    {
+        // æœ€å¤§å€¤ã‚’åˆ¶é™
+        int max = 5;
+        value = Mathf.Clamp(value, 0, max); // 0ã€œ5ã«åˆ¶é™
+
+        string result = "";
+
+        // â˜…ã‚’è¿½åŠ 
+        for (int i = 0; i < value; i++)
+        {
+            result += "â˜…";
+        }
+
+        // â˜†ã‚’è¿½åŠ 
+        for (int i = 0; i < max - value; i++)
+        {
+            result += "â˜†";
+        }
+
+        return result;
     }
 }
