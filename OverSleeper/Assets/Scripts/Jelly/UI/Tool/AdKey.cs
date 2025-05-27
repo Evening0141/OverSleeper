@@ -1,13 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DebugKey : MonoBehaviour, IChildBehavior
+public class AdKey : MonoBehaviour, IChildBehavior
 {
     Text levelText;  // レベルを表示するテキスト
     Text moneyText;  // 費用を表示するテキスト
 
     private int cost;
-
     private int level = -1;
 
     // テキスト反映
@@ -34,7 +33,7 @@ public class DebugKey : MonoBehaviour, IChildBehavior
     // コスト計算
     private void Cost()
     {
-        level = DataRelay.Dr.Debug_;
+        level = DataRelay.Dr.Sns;
         cost = Calculation.GetNextLevelCost(level);
     }
 
@@ -47,7 +46,7 @@ public class DebugKey : MonoBehaviour, IChildBehavior
         if (cost <= DataRelay.Dr.Money)
         {
             // レベルアップ
-            DataRelay.Dr.Debug_++;
+            DataRelay.Dr.Sns++;
             DataRelay.Dr.Money -= cost;
             Cost();
             // 表示
@@ -55,5 +54,4 @@ public class DebugKey : MonoBehaviour, IChildBehavior
             moneyText.text = "費用:" + cost.ToString() + "万";
         }
     }
-
 }

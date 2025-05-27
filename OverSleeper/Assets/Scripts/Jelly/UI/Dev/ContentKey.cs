@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkinKey : DevButton, IChildBehavior
+public class ContentKey : DevButton, IChildBehavior
 {
     [SerializeField] DevData devData; // データの取得
     Text weekText;   // 開発期間を表示するテキスト
     Text moneyText;  // 費用を表示するテキスト
     // インターフェース
-    // 開発ボタンの中のスキン開発機能です
+    // 開発ボタンの中の機能です
     public void Execute()
     {
 
