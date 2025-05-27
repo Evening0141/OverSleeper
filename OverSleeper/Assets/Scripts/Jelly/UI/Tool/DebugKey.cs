@@ -30,6 +30,10 @@ public class DebugKey : MonoBehaviour, IChildBehavior
         levelText.text = "Lv." + level.ToString();
         moneyText.text = "費用:" + cost.ToString() + "万";
     }
+    private void Update()
+    {
+       
+    }
 
     // コスト計算
     private void Cost()
@@ -37,7 +41,6 @@ public class DebugKey : MonoBehaviour, IChildBehavior
         level = DataRelay.Dr.Debug_;
         cost = Calculation.GetNextLevelCost(level);
     }
-
     // インターフェース
     // 設備ボタンの中のサーバー機能です
     public void Execute()
