@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
             {
                 target.TakeDamage(damage);
             }
-
+            Debug.Log("HIT");
             Destroy(gameObject);
         }
         else if (!other.isTrigger)

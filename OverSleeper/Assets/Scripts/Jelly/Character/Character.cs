@@ -38,12 +38,18 @@ public class Character : CharacterBase
 
         if (WallSearch())
         {
-            // 壁を検知したらランダムな方向に変更
             ChangeDirection();
         }
         else if (directionTimer >= directionChangeInterval)
         {
             ChangeDirection();
+        }
+
+        // キャラクターの向きを進行方向にスムーズに回転
+        if (moveDirection != Vector3.zero)
+        {
+            Vector3 lookDirection = new Vector3(moveDirection.x, 0, moveDirection.z);
+            transform.forward = Vector3.Lerp(transform.forward, lookDirection, Time.deltaTime * 5f); // 5fは回転速度
         }
 
         transform.position += moveDirection * moveSpd * Time.deltaTime;
