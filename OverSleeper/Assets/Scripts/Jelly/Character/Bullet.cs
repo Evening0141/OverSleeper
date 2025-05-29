@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public GameObject hitEffObj;
+
     public float lifeTime = 3f;
     public int damage = 10;
 
@@ -12,6 +14,13 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // 生成
+        GameObject hitObj;
+        // 当たったオブジェクト座標
+        Vector3 hitPos=other.transform.position;
+        // オフセット
+        float ofsY = 2.0f;
+        hitPos.y = ofsY;
         // 敵に命中したか判定
         if (other.CompareTag("Character"))
         {
@@ -20,6 +29,9 @@ public class Bullet : MonoBehaviour
             if (target != null)
             {
                 target.TakeDamage(damage);
+                // エフェクト生成
+                hitObj=Instantiate(hitEffObj,hitPos,Quaternion.identity);
+                Destroy(hitObj,lifeTime);
             }
             Debug.Log("HIT");
             Destroy(gameObject);
@@ -28,5 +40,6 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        Destroy(gameObject);
     }
 }
