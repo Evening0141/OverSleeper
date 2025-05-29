@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class CharacterBase : MonoBehaviour
 {
-    protected int hp;     　　  // プレイヤーHP
-    protected string nameId;  // プレイヤー名
-    protected float hit;  　　// 射撃精度
+    protected int hp;     　　 // プレイヤーHP
+    protected string nameId;   // プレイヤー名
+    protected float hit;  　　 // 射撃精度
     protected float moveSpd;   // 移動速度
     protected float resSpd;    // リスポーンクールタイム
+
+    protected bool IsC = false; // チート使用   
 
     // 移動処理
     public virtual void Move() {}
@@ -42,7 +44,6 @@ public class CharacterBase : MonoBehaviour
     protected virtual void Die()
     {
         Debug.Log($"{nameId} は倒れた");
-        // ここに死亡時の処理（アニメーションやリスポーン）を記述
         gameObject.SetActive(false);
     }
 }

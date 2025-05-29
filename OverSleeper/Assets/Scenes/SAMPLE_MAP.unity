@@ -2054,7 +2054,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 405343807}
-  bulletPrefab: {fileID: 8079158178191555903, guid: f2054be7f8b0cae46b730d13319ea3b6, type: 3}
+  bulletPrefab: {fileID: 8019862414519829217, guid: dbf1e72266b94cc4c913b3b6216363d0, type: 3}
   npcCamera: {fileID: 398423443}
   wallLayer:
     serializedVersion: 2
@@ -2062,6 +2062,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
+  anim: {fileID: 1871171074855300982}
 --- !u!65 &2760115931573097544
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2596,7 +2597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 214909424}
-  bulletPrefab: {fileID: 8079158178191555903, guid: f2054be7f8b0cae46b730d13319ea3b6, type: 3}
+  bulletPrefab: {fileID: 8019862414519829217, guid: dbf1e72266b94cc4c913b3b6216363d0, type: 3}
   npcCamera: {fileID: 60194118}
   wallLayer:
     serializedVersion: 2
@@ -2604,6 +2605,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
+  anim: {fileID: 3340663419294145512}
 --- !u!65 &4811446170940737544
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3009,7 +3011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1661639000}
-  bulletPrefab: {fileID: 8079158178191555903, guid: f2054be7f8b0cae46b730d13319ea3b6, type: 3}
+  bulletPrefab: {fileID: 8019862414519829217, guid: dbf1e72266b94cc4c913b3b6216363d0, type: 3}
   npcCamera: {fileID: 1785022254}
   wallLayer:
     serializedVersion: 2
@@ -3017,6 +3019,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
+  anim: {fileID: 2710748370048665831}
 --- !u!65 &7030495690925064265
 BoxCollider:
   m_ObjectHideFlags: 0
