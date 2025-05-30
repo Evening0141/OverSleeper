@@ -6,6 +6,7 @@ public class LocalUIManager : MonoBehaviour
 
     //MoneyRelayスクリプト呼び出し用
     MoneyRelay moneyrelay;
+    DateRelay daterelay;
     #region UI
     [Header("資金表示のテキスト"), SerializeField] Text moneyText;
     [Header("維持費表示のテキスト"), SerializeField] Text maintainText;
@@ -30,7 +31,10 @@ public class LocalUIManager : MonoBehaviour
 
     private void Start()
     {
-        moneyrelay = new MoneyRelay(); //Monovi形式じゃないのでnewで代入
+        //Monovi形式じゃないのでnewで代入
+        moneyrelay = new MoneyRelay();
+        //Monovi形式じゃないのでnewを代入
+        daterelay = new DateRelay();
         // 実行時に特定オブジェクトを探す
         debugBlocker = GameObject.Find("UIManager");
 
@@ -59,8 +63,10 @@ public class LocalUIManager : MonoBehaviour
     }
     private void Update()
     {
+        //資金計算処理の実行
         moneyrelay.MoneyGrow();
-        Debug.Log("上昇資金"+ moneyrelay.money);
+        //年月処理の実行
+        daterelay.DateGrow(); 
         Debug.Log("現在資金" + DataRelay.Dr.Money);
         if (debugBlocker != null)
         {
