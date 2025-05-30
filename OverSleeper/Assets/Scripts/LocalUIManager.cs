@@ -9,7 +9,7 @@ public class LocalUIManager : MonoBehaviour
     DateRelay daterelay;
     #region UI
     [Header("資金表示のテキスト"), SerializeField] Text moneyText;
-    [Header("維持費表示のテキスト"), SerializeField] Text maintainText;
+    //[Header("維持費表示のテキスト"), SerializeField] Text maintainText;
     [Header("年表示のテキスト"), SerializeField] Text yearText;
     [Header("月表示のテキスト"), SerializeField] Text monthText;
     [Header("人気度表示のテキスト"), SerializeField] Text famousText;
@@ -120,7 +120,7 @@ public class LocalUIManager : MonoBehaviour
         var data = DataRelay.Dr;
         // 初期の反映
         moneyText.text = data.Money.ToString();
-        maintainText.text = data.Maintain.ToString();
+       // maintainText.text = data.Maintain.ToString();
         yearText.text = data.Year.ToString();
         monthText.text = data.Month.ToString();
         famousText.text = GenerateStars.Generate(data.Famous);
