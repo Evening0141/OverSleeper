@@ -9,6 +9,7 @@ public static class Calculation
 
     //資金計算で使う変数
     private const int MONEY = 1; //定数
+
     /// <summary>
     /// 指定レベルにおける次のレベルアップまでのコストを計算して返す
     /// </summary>
