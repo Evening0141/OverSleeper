@@ -76,7 +76,7 @@ public class CharacterBase : MonoBehaviour
         // íeÇÃê∂ê¨Ç∆ë¨ìxê›íË
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.LookRotation(shootDirection));
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        const float bulletSpd = 20000.0f;
+        const float bulletSpd = 2000.0f;
 
         if (rb != null)
         {
@@ -172,6 +172,8 @@ public class CharacterBase : MonoBehaviour
         float maxTargetDistance = 50f;
         if (Vector3.Distance(transform.position, target.position) > maxTargetDistance) return false;
 
+        // ï«Ç≈å©Ç¶Ç»Ç≠Ç»Ç¡ÇΩÇ∆Ç´
+        if (!SearchWithViewRays()) { return false; }
         return true;
     }
     private void AimAndShoot()
