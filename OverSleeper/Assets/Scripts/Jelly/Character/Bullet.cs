@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
         // 当たったオブジェクト座標
         Vector3 hitPos=other.transform.position;
         // オフセット
-        float ofsY = 2.0f;
+        float ofsY = 4.0f;
         hitPos.y = ofsY;
         // 敵に命中したか判定
         if (!other.CompareTag("Character"))
