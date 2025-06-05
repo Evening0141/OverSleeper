@@ -267,7 +267,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyText: {fileID: 5309967610316949296}
-  maintainText: {fileID: 5309967609043362573}
   yearText: {fileID: 506851181}
   monthText: {fileID: 1217125182}
   famousText: {fileID: 2140293846}
@@ -1007,7 +1006,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -350.00003, y: 490}
+  m_AnchoredPosition: {x: 353, y: 490}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &223620751
@@ -7243,7 +7242,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2011250164
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8282,8 +8281,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -589, y: 490}
-  m_SizeDelta: {x: 300, y: 100}
+  m_AnchoredPosition: {x: -249, y: 490}
+  m_SizeDelta: {x: 1000, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5309967610316949304
 MonoBehaviour:

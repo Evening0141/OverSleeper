@@ -19,10 +19,14 @@ public class Bullet : MonoBehaviour
         // 当たったオブジェクト座標
         Vector3 hitPos=other.transform.position;
         // オフセット
-        float ofsY = 2.0f;
+        float ofsY = 4.0f;
         hitPos.y = ofsY;
         // 敵に命中したか判定
-        if (other.CompareTag("Character"))
+        if (!other.CompareTag("Character"))
+        {
+            Destroy(gameObject);
+        }
+        else // 敵Hitの場合
         {
             // CharacterBase を取得してダメージを与える
             CharacterBase target = other.GetComponent<CharacterBase>();
@@ -30,16 +34,11 @@ public class Bullet : MonoBehaviour
             {
                 target.TakeDamage(damage);
                 // エフェクト生成
-                hitObj=Instantiate(hitEffObj,hitPos,Quaternion.identity);
-                Destroy(hitObj,lifeTime);
+                hitObj = Instantiate(hitEffObj, hitPos, Quaternion.identity);
+                Destroy(hitObj, lifeTime);
             }
             Debug.Log("HIT");
             Destroy(gameObject);
         }
-        else if (!other.isTrigger)
-        {
-            Destroy(gameObject);
-        }
-        Destroy(gameObject);
     }
 }

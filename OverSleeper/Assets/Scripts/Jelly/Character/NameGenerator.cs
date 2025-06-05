@@ -18,7 +18,7 @@ public static class NameGenerator
         "Alice", "Bob", "Charlie", "Diana", "Eve",
         "Frank", "Grace", "Heidi", "Ivan", "Judy",
         "Ken", "Luna", "Milo", "Oscar", "Jelly",
-        "BB", "Osho"
+        "BB", "Osho","Sin","Evening","Kaname","Sekinee"
     };
 
     private static HashSet<string> usedNames = new HashSet<string>();
