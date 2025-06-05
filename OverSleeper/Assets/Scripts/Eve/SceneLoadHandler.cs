@@ -5,16 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoadHandler : MonoBehaviour
 {
+    //シーンのロードが完了したかの判別用
     private bool hasLoaded = false;
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);                  //シーンが切り替わっても消えないオブジェクト
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDestroy()
     {
-        
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
