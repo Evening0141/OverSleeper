@@ -56,8 +56,8 @@ public class SaveJSON : MonoBehaviour
 
         string json = JsonUtility.ToJson(data);         //文字列に変換
         File.WriteAllText(Application.persistentDataPath + "/save.json", json);         //保存
-        Debug.Log("保存されました:" + json);
-        Debug.Log(Application.persistentDataPath);
+        Debug.Log("保存されました:" + json);             //保存されたデータの内容
+        Debug.Log(Application.persistentDataPath);      //保存したファイルの場所
     }
 
     /// <summary>
@@ -72,6 +72,20 @@ public class SaveJSON : MonoBehaviour
             //存在する場合は復元
             string json = File.ReadAllText(path);
             SaveDataValue data = JsonUtility.FromJson<SaveDataValue>(json);
+
+            //読み込まれたデータをロード
+            relay.Money = data._money;
+            relay.Maintain = data._maintain;
+            relay.Year = data._year;
+            relay.Month = data._month;
+            relay.Server = data._server;
+            relay.Debug_ = data._debug;
+            relay.Sns = data._sns;
+            relay.User = data._user;
+            relay.Famous = data._famous;
+            relay.Popular = data._popular;
+
+            Debug.Log("データが読み込まれました：" + json);
         }
         else
         {
