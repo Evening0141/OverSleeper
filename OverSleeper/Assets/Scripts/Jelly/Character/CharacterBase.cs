@@ -76,7 +76,7 @@ public class CharacterBase : MonoBehaviour
         // 弾の生成と速度設定
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.LookRotation(shootDirection));
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        const float bulletSpd = 20000.0f;
+        const float bulletSpd = 5000.0f;
 
         if (rb != null)
         {
@@ -98,7 +98,7 @@ public class CharacterBase : MonoBehaviour
     // 壁検知
     public virtual bool WallSearch()
     {  // 壁検知(前方1m)
-        return Physics.Raycast(transform.position, moveDirection, 1f, wallLayer);
+        return Physics.Raycast(transform.position, moveDirection, 5f, wallLayer);
     }
     // ダメージを受ける処理
     public virtual void TakeDamage(int damage)
@@ -172,6 +172,8 @@ public class CharacterBase : MonoBehaviour
         float maxTargetDistance = 50f;
         if (Vector3.Distance(transform.position, target.position) > maxTargetDistance) return false;
 
+        // 壁で見えなくなったとき
+        if (!SearchWithViewRays()) { return false; }
         return true;
     }
     private void AimAndShoot()
@@ -213,7 +215,7 @@ public class CharacterBase : MonoBehaviour
     {
         hp = 100;                                 // 初期HP
         nameId = NameGenerator.GetUniqueName();   // 識別用ID
-        moveSpd = 3.5f;                           // 移動速度
+        moveSpd = 40f;                           // 移動速度
         hit = 0.95f;                              // 射撃精度
         resSpd = 5f;                              // 復活速度
         anim.Play("Idle");                        // 初期アニメーション
