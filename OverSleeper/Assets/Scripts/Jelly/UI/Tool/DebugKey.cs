@@ -39,7 +39,7 @@ public class DebugKey : MonoBehaviour, IChildBehavior
     private void Cost()
     {
         level = DataRelay.Dr.Debug_;
-        cost = Calculation.GetNextLevelCost(level);
+        cost = Calculation.GetNextLevelCost(level) * 10;
     }
     // インターフェース
     // 設備ボタンの中のサーバー機能です
