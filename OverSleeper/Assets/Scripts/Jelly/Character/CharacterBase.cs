@@ -215,9 +215,8 @@ public class CharacterBase : MonoBehaviour
     {
         hp = 100;                                 // 初期HP
         nameId = NameGenerator.GetUniqueName();   // 識別用ID
-        moveSpd = 10f;                           // 移動速度
+        moveSpd = 20f;                           // 移動速度
         hit = 0.95f;                              // 射撃精度
-        resSpd = 5f;                              // 復活速度
         anim.Play("Idle");                        // 初期アニメーション
         ChangeDirection();                        // 初期方向
         SetRandomMoveDuration();                  // 最初の移動時間を設定
