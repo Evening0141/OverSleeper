@@ -119,7 +119,9 @@ public class LocalUIManager : MonoBehaviour
     {
         var data = DataRelay.Dr;
         // 初期の反映
-        moneyText.text = data.Money.ToString();
+
+        //三桁ごとに区切るToString("N0")
+        moneyText.text = data.Money.ToString("N0");
        // maintainText.text = data.Maintain.ToString();
         yearText.text = data.Year.ToString();
         monthText.text = data.Month.ToString();
