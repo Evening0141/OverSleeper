@@ -78,8 +78,11 @@ public class FPSGameManager : MonoBehaviour
         // 次のスイッチ処理へ
         act = GameAct.MAIN;
     }
+
+    // 死亡を検知する
     private void PlayerActive()
     {
+        
     }
 
     // チート抽選

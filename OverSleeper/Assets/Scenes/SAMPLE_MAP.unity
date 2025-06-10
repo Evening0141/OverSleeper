@@ -1735,8 +1735,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a597bef6bb2f142a9d8f8087e65c46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnObj: []
-  playerObj: []
+  spawnObj:
+  - {fileID: 1910770657}
+  - {fileID: 435128930}
+  - {fileID: 92724455}
+  playerObj:
+  - {fileID: 3442392423376520950, guid: 39ef6d53279fc6f44946ea5bf1a91a39, type: 3}
+  - {fileID: 3712709670699338079, guid: b53f154f25074a846a19b8ef09e6a02f, type: 3}
+  - {fileID: 3602386468566751686, guid: fdf47cb8430d52c49802c87f471ff422, type: 3}
 --- !u!4 &1162921503
 Transform:
   m_ObjectHideFlags: 0
