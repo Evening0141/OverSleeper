@@ -76,7 +76,7 @@ public class CharacterBase : MonoBehaviour
         // 弾の生成と速度設定
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.LookRotation(shootDirection));
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        const float bulletSpd = 5000.0f;
+        const float bulletSpd = 50000.0f;
 
         if (rb != null)
         {
@@ -215,7 +215,7 @@ public class CharacterBase : MonoBehaviour
     {
         hp = 100;                                 // 初期HP
         nameId = NameGenerator.GetUniqueName();   // 識別用ID
-        moveSpd = 40f;                           // 移動速度
+        moveSpd = 10f;                           // 移動速度
         hit = 0.95f;                              // 射撃精度
         resSpd = 5f;                              // 復活速度
         anim.Play("Idle");                        // 初期アニメーション
