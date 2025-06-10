@@ -1,6 +1,5 @@
 
 using UnityEngine;
-using System.Numerics;
 
 public class MoneyRelay
 {
@@ -19,8 +18,7 @@ public class MoneyRelay
         //ŠÔŒvZ—p
         timer += Time.deltaTime; 
         if (timer >= MONEY_COOLTIME)
-        {
-            Debug.Log("’Ê‚Á‚Ä‚¢‚é");
+        { 
             //cooltime‚²‚Æ‚É‘‹à‚ğ’è”•ª‘‚â‚·ˆ—
             money = Calculation.GetMoney(money) + DataRelay.Dr.Debug_* Debug_grow + DataRelay.Dr.Server* Server_grow +DataRelay.Dr.Sns* Sns_grow;
 
