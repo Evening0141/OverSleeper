@@ -4,7 +4,7 @@ public class DataRelay : MonoBehaviour
 {
     /* メインの数値表示 */
     #region NumValue
-    private int money = 100; //資金用の変数
+    private int money = 0; //資金用の変数
     private int maintain = 0; //維持費用の変数
     private int year = 0;     //年の変数
     private int month = 0;    //月の変数
