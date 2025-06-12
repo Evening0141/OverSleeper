@@ -10,7 +10,7 @@ public class CharacterBase : MonoBehaviour
     protected float hit;  　　 // 射撃精度
     protected float moveSpd;   // 移動速度
     protected float resSpd;    // リスポーンクールタイム
-    protected bool IsC = false; // チート使用   
+    protected bool isDown = false; // 死亡
 
     [Header("基本設定")]
     [SerializeField] protected Transform firePoint;         // 弾の発射位置
@@ -112,12 +112,9 @@ public class CharacterBase : MonoBehaviour
         }
     }
     // 死亡処理
-    protected virtual void Die()
+    public virtual void Die()
     {
         Debug.Log($"{nameId} は倒れた");
-        // この個体がなくなるまで同じ名前は存在させない
-        NameGenerator.ReleaseName(nameId); // 名前の開放
-        gameObject.SetActive(false);
     }
     private IEnumerator RespawnRoutine()
     {
@@ -210,6 +207,23 @@ public class CharacterBase : MonoBehaviour
         moveDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
         directionTimer = 0f;
     }
+
+    /// <summary>
+    /// キャラ識別名を返却
+    /// </summary>
+    public string GetUserID
+    {
+        get { return nameId; }
+    }
+    /// <summary>
+    /// キャラの生存状況を返却
+    /// </summary>
+    public bool IsDown
+    {
+        get { return isDown; }
+    }
+
+
     // 継承先のスクリプトでの共通スタート
     protected void　CharaSetUp()
     {
@@ -277,5 +291,6 @@ public class CharacterBase : MonoBehaviour
             }
             anim.Play("Idle");
         }
+        Debug.Log($"{nameId} は{isDown}");
     }
 }
