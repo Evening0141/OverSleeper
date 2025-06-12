@@ -16,6 +16,14 @@
         moveSpd = 25.0f;
         shotCooldown = 0.5f;
     }
+
+    public override void Die()
+    {
+        // この個体がなくなるまで同じ名前は存在させない
+        NameGenerator.ReleaseName(nameId); // 名前の開放
+        isDown = true; // 死亡
+        //gameObject.SetActive(false);
+    }
     /// <summary>
     /// プレイヤーのメイン処理
     /// </summary>
