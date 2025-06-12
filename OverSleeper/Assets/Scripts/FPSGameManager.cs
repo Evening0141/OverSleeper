@@ -5,14 +5,23 @@ using UnityEngine.UI;
 public class FPSGameManager : MonoBehaviour
 {
     #region field
+    // ゲームタイム
+    [SerializeField] Text timerText;  // 時間表示
+    private const float _GAMETIME = 45.0f;
+    private float _GameTime = _GAMETIME;
+
+    // クールタイム
     private const float _TIME = 3.0f; // 時間設定
     private float _time = _TIME;      // 時間セット
     private bool isGame = true;       // 順位確定後のクールタイムタイミング
     private bool canCheat = false;    // チート付与
 
+    [SerializeField] GameObject readyObj;
+
     [System.Serializable]
     public class PlayerSlot
     {
+        public Sprite CharaSp;                // 画像
         public GameObject spawnPoint;         // 生成場所
         public GameObject playerPrefab;       // プレイヤープレハブ
         public Image charaImg;                // キャラアイコン
@@ -25,6 +34,7 @@ public class FPSGameManager : MonoBehaviour
     }
 
     [SerializeField] private List<PlayerSlot> playerSlots = new List<PlayerSlot>();
+    private List<PlayerSlot> activePlayerSlots = new List<PlayerSlot>();
     #endregion
 
     // スイッチ処理の判断
@@ -72,9 +82,19 @@ public class FPSGameManager : MonoBehaviour
     // 生成処理
     private void PlayerSet()
     {
+        // パネル非表示
+        readyObj.SetActive(false);
+
+        // 複製
+        activePlayerSlots = new List<PlayerSlot>(playerSlots); 
+
+        // 抽選
         RandCheat();
 
-        foreach (var slot in playerSlots)
+        // 時間セット
+        _GameTime = _GAMETIME;
+
+        foreach (var slot in activePlayerSlots)
         {
             GameObject obj = Instantiate(slot.playerPrefab, slot.spawnPoint.transform.position, Quaternion.identity);
             Character chara = obj.GetComponent<Character>();
@@ -89,40 +109,66 @@ public class FPSGameManager : MonoBehaviour
         // trueを引いた場合は誰かに付与
         if (canCheat)
         {
-            int index = Random.Range(0, playerSlots.Count);
-            playerSlots[index].character.UseCheat();
+            int index = Random.Range(0, activePlayerSlots.Count);
+            activePlayerSlots[index].character.UseCheat();
         }
 
         // 次のスイッチ処理へ
         act = GameAct.MAIN;
     }
 
-    // 現状はキャラ三体なので問題はなさそうだが
-    // のちのち増えた場合処理速度で危惧すべき
-    // 死亡を検知する
     private void PlayerActive()
     {
-        for (int i = playerSlots.Count - 1; i >= 0; i--)
+        // 現状はキャラ三体なので問題はなさそうだが
+        // のちのち増えた場合処理速度で危惧すべき
+        // 死亡を検知する
+        for (int i = activePlayerSlots.Count - 1; i >= 0; i--)
         {
-            var slot = playerSlots[i];
+            var slot = activePlayerSlots[i];
             if (slot.IsDown)
             {
                 slot.charaImg.color = Color.red;
-                slot.playerObj.transform.position = new Vector3(0, -255, 0);
-                playerSlots.RemoveAt(i); // 死亡キャラをリストから削除
+                Destroy(slot.playerObj);
+                activePlayerSlots.RemoveAt(i); // 死亡キャラをリストから削除
             }
         }
+        // 時間処理
+        if (_GameTime > 0)
+        {
+            _GameTime -= Time.deltaTime;
+            if (_GameTime <= 0)
+            {
+                act = GameAct.RANK;
+                timerText.text= "終了！";
+                return;
+            }
+        }
+        int min = Mathf.FloorToInt(_GameTime / 60);
+        int sec = Mathf.FloorToInt(_GameTime % 60);
+        float miri = _GameTime % 1.0f;
+        // テキスト変更
+        timerText.text = string.Format("{0:00}:{1:00}:{2:00}", min, sec, Mathf.FloorToInt(miri * 100));
 
-        // 生存プレイヤー数が一人又はゼロになったときランキングへ
-        if (1>=playerSlots.Count)
+        // 生存プレイヤー数が一人又はゼロになったとき
+        // ゲーム時間が終了の場合ランキングへ
+        if (1>=activePlayerSlots.Count||_GameTime<=0)
         {
             act = GameAct.RANK;
+            return;
         }
     }
 
     private void RankingDisp()
     {
+        readyObj.SetActive(true);
+        isGame = false;
 
+        for (int i = activePlayerSlots.Count - 1; i >= 0; i--)
+        {
+            var slot = activePlayerSlots[i];
+            Destroy(slot.playerObj);
+            activePlayerSlots.RemoveAt(i); // 全て削除
+        }
     }
 
     // チート抽選

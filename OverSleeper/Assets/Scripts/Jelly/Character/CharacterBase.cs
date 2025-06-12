@@ -21,7 +21,7 @@ public class CharacterBase : MonoBehaviour
     [SerializeField] protected Animator anim;               // アニメーター
 
     protected Vector3 moveDirection;                         // 移動方向
-    protected float directionChangeInterval = 5f;            // 移動方向変更間隔
+    protected float directionChangeInterval = 7f;            // 移動方向変更間隔
     protected float directionTimer = 0f;                     // 移動方向変更用タイマー
     protected float shotCooldown = 1f;                       // 弾のクールダウン
     protected float shotTimer = 0f;                          // 弾発射タイマー
@@ -97,7 +97,7 @@ public class CharacterBase : MonoBehaviour
     }
     // 壁検知
     public virtual bool WallSearch()
-    {  // 壁検知(前方1m)
+    {  // 壁検知
         return Physics.Raycast(transform.position, moveDirection, 5f, wallLayer);
     }
     // ダメージを受ける処理
