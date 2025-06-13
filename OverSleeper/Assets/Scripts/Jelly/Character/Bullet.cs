@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
         // オフセット
         float ofsY = 4.0f;
         hitPos.y = ofsY;
-        // 敵に命中したか判定
+        // 敵以外に命中したら即削除
         if (!other.CompareTag("Character"))
         {
             Destroy(gameObject);
