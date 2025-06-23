@@ -193,7 +193,6 @@ MonoBehaviour:
   yearText: {fileID: 506851181}
   monthText: {fileID: 1217125182}
   famousText: {fileID: 2140293846}
-  popularText: {fileID: 0}
   userText: {fileID: 247622284}
 --- !u!4 &21805024
 Transform:
@@ -3156,7 +3155,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 91264945}
   m_HandleRect: {fileID: 91264944}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

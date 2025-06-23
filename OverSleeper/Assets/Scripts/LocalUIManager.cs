@@ -13,7 +13,7 @@ public class LocalUIManager : MonoBehaviour
     [Header("年表示のテキスト"), SerializeField] Text yearText;
     [Header("月表示のテキスト"), SerializeField] Text monthText;
     [Header("人気度表示のテキスト"), SerializeField] Text famousText;
-    [Header("知名度表示のテキスト"), SerializeField] Text popularText;
+    //[Header("知名度表示のテキスト"), SerializeField] Text popularText;
     [Header("ユーザー数表示のテキスト"), SerializeField] Text userText;
     #endregion  
 
@@ -126,7 +126,7 @@ public class LocalUIManager : MonoBehaviour
         yearText.text = data.Year.ToString();
         monthText.text = data.Month.ToString();
         famousText.text = GenerateStars.Generate(data.Famous);
-        popularText.text = status_POPULAR[data.Popular];
+        //popularText.text = status_POPULAR[data.Popular];
         userText.text = status_USER[data.User];
     }
     //テキストカラー変更用
