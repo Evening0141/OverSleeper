@@ -192,6 +192,9 @@ public class FPSGameManager : MonoBehaviour
     // チート抽選
     private void RandCheat()
     {
+        // データをもらう
+        canCheat = DataRelay.Dr.IsCheat;
+
         if (canCheat)
         {
             Debug.Log("チート使用者がいます");
@@ -200,6 +203,9 @@ public class FPSGameManager : MonoBehaviour
         // 例: 90% の確率で false、10% の確率で true
         canCheat = Random.value < 0.1f;
         Debug.Log(canCheat + "チートの有無");
+
+        // 抽選後に中継に情報を送る
+        DataRelay.Dr.IsCheat = canCheat;
     }
 
     // 待機計算

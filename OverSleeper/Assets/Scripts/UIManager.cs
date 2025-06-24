@@ -63,4 +63,8 @@ public class UIManager : MonoBehaviour
             }
         }
     }
+    public void LocalCall_Up()
+    {
+        localUISc.LocalUpdate();
+    }
 }

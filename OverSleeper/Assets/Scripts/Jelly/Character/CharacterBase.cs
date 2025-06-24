@@ -291,6 +291,6 @@ public class CharacterBase : MonoBehaviour
             }
             anim.Play("Idle");
         }
-        Debug.Log($"{nameId} ‚Í{isDown}");
+       // Debug.Log($"{nameId} ‚Í{isDown}");
     }
 }

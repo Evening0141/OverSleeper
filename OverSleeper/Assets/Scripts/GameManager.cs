@@ -128,6 +128,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("ƒQ[ƒ€ƒV[ƒ“‚É‘JˆÚ‚µ‚Ü‚µ‚½");
         manager_UI.UIGeneralUp();
+        manager_UI.LocalCall_Up();
         // 
     }
 

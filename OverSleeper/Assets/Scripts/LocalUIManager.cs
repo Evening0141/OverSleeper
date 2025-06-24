@@ -84,6 +84,7 @@ public class LocalUIManager : MonoBehaviour
                 button.ButtonUpdate();
             }
         }
+        // UI更新
         UIDisp();
     }
 #endif
@@ -94,6 +95,11 @@ public class LocalUIManager : MonoBehaviour
     // UIManagerで呼び出す形で作成
     public void LocalStart()
     {
+        //Monovi形式じゃないのでnewで代入
+        moneyrelay = new MoneyRelay();
+        //Monovi形式じゃないのでnewを代入
+        daterelay = new DateRelay();
+
         // 空白文字のスクリプト
         #region
         //// シーン内の処理を読み込む
@@ -110,7 +116,13 @@ public class LocalUIManager : MonoBehaviour
 
     public void LocalUpdate()
     {
+        //資金計算処理の実行
+        moneyrelay.MoneyGrow();
+        //年月処理の実行
+        daterelay.DateGrow();
 
+        // UI更新
+        UIDisp();
     }
 
 
