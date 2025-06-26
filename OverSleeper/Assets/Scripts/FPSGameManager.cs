@@ -10,6 +10,9 @@ public class FPSGameManager : MonoBehaviour
     private const float _GAMETIME = 45.0f;
     private float _GameTime = _GAMETIME;
 
+    // BAN機能
+    [SerializeField] BANKEY ban;
+
     // クールタイム
     private const float _TIME = 3.0f; // 時間設定
     private float _time = _TIME;      // 時間セット
@@ -53,6 +56,15 @@ public class FPSGameManager : MonoBehaviour
 
     private void Update()
     {
+        if(!ban.CanBAN)
+        {
+            // 再計算
+            ban.CoolTime();
+            // 準備
+            Reset();
+            return;
+        }
+
         FPSUpdate();
     }
 
@@ -218,5 +230,19 @@ public class FPSGameManager : MonoBehaviour
             isGame = true; // 準備完了
             _time = _TIME; // 再セット
         }
+    }
+
+    private void Reset()
+    {
+        for (int i = activePlayerSlots.Count - 1; i >= 0; i--)
+        {
+            var slot = activePlayerSlots[i];
+            Destroy(slot.playerObj);
+            activePlayerSlots.RemoveAt(i); // 全て削除
+        }
+
+        act = GameAct.SPAWN; // 次のバトル準備
+        isGame = true; // 準備完了
+        _time = _TIME; // 再セット
     }
 }
