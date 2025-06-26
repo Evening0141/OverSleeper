@@ -16,7 +16,10 @@ public class FPSGameManager : MonoBehaviour
     private bool isGame = true;       // 順位確定後のクールタイムタイミング
     private bool canCheat = false;    // チート付与
 
-    [SerializeField] GameObject readyObj;
+    [Header("試合後表示のオブジェクト"),SerializeField] GameObject readyObj;
+    [Header("ランク表示"),SerializeField] Text Rank;
+
+    string winUser = "";  // 勝利プレイヤーの名前
 
     [System.Serializable]
     public class PlayerSlot
@@ -82,6 +85,9 @@ public class FPSGameManager : MonoBehaviour
     // 生成処理
     private void PlayerSet()
     {
+        // 初期化
+        winUser = "";
+
         // パネル非表示
         readyObj.SetActive(false);
 
@@ -153,6 +159,10 @@ public class FPSGameManager : MonoBehaviour
         // ゲーム時間が終了の場合ランキングへ
         if (1>=activePlayerSlots.Count||_GameTime<=0)
         {
+            if (activePlayerSlots.Count == 1)
+            {
+                winUser = activePlayerSlots[0].nameText.text; // 名前保管
+            }
             act = GameAct.RANK;
             return;
         }
@@ -162,7 +172,15 @@ public class FPSGameManager : MonoBehaviour
     {
         readyObj.SetActive(true);
         isGame = false;
-
+        // 勝利プレイヤーを表示
+        if (activePlayerSlots.Count == 1)
+        {
+            Rank.text = winUser + " WIN";
+        }
+        else　// 時間終了の場合
+        {
+            Rank.text = "DRAW";
+        }
         for (int i = activePlayerSlots.Count - 1; i >= 0; i--)
         {
             var slot = activePlayerSlots[i];
@@ -174,6 +192,9 @@ public class FPSGameManager : MonoBehaviour
     // チート抽選
     private void RandCheat()
     {
+        // データをもらう
+        canCheat = DataRelay.Dr.IsCheat;
+
         if (canCheat)
         {
             Debug.Log("チート使用者がいます");
@@ -182,6 +203,9 @@ public class FPSGameManager : MonoBehaviour
         // 例: 90% の確率で false、10% の確率で true
         canCheat = Random.value < 0.1f;
         Debug.Log(canCheat + "チートの有無");
+
+        // 抽選後に中継に情報を送る
+        DataRelay.Dr.IsCheat = canCheat;
     }
 
     // 待機計算

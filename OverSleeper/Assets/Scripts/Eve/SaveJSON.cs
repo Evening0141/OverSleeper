@@ -1,8 +1,5 @@
-using System;
 using UnityEngine;
 using System.IO;
-using System.Text;
-using System.Security.Cryptography;
 
 [System.Serializable]
 

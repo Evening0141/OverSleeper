@@ -7,7 +7,7 @@ public class DataRelay : MonoBehaviour
     private int money = 0; //資金用の変数
     private int maintain = 0; //維持費用の変数
     private int year = 0;     //年の変数
-    private int month = 0;    //月の変数
+    private int month = 1;    //月の変数
 
     public int Money //Money(資金)用のゲッターセッター
     {
@@ -155,6 +155,14 @@ public class DataRelay : MonoBehaviour
     }
     #endregion
 
+    private bool Cheating = false;
+
+    public bool IsCheat
+    { 
+        set { Cheating = value; }
+        get { return Cheating; }
+    }
+
     //シングルトン用変数
     private static DataRelay dr;
     //シングルトン生成
@@ -175,6 +183,7 @@ public class DataRelay : MonoBehaviour
         if (dr != null && dr != this)
         {
             Destroy(this.gameObject); // 重複を防止
+            Debug.Log("重複排除");
         }
         else
         {

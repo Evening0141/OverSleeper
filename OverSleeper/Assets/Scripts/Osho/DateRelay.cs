@@ -7,7 +7,7 @@ public class DateRelay
     //1年（12か月）の定数宣言
     private const int MONTH_MAX = 12;
     //Dateのクールタイム
-    public float DATE_COOLTIME = 5.0f; 
+    public float DATE_COOLTIME = 60.0f; 
    
     public void DateGrow()
     {

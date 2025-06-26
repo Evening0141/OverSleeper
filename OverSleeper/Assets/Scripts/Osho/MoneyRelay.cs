@@ -18,9 +18,12 @@ public class MoneyRelay
         //ŠÔŒvZ—p
         timer += Time.deltaTime; 
         if (timer >= MONEY_COOLTIME)
-        { 
+        {
             //cooltime‚²‚Æ‚É‘‹à‚ğ’è”•ª‘‚â‚·ˆ—
-            money = Calculation.GetMoney(money) + DataRelay.Dr.Debug_* Debug_grow + DataRelay.Dr.Server* Server_grow +DataRelay.Dr.Sns* Sns_grow;
+            money = Calculation.GetMoney(money) +
+                (DataRelay.Dr.Debug_ / 10) * Debug_grow +
+                (DataRelay.Dr.Server / 5) * Server_grow + 
+                (DataRelay.Dr.Sns / 10) * Sns_grow;
 
             // Œ»İ‚Ì‘‹à‚ğæ“¾
             int currentMoney = DataRelay.Dr.Money;
