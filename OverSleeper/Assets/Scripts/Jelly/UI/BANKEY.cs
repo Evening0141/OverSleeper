@@ -13,7 +13,7 @@ public class BANKEY : MonoBehaviour, IChildBehavior
     private bool CanBan = true;
 
     // クールタイム計算用
-    private const float _TIME = 3.0f;
+    private const float _TIME = 5.0f;
     private float _timer = _TIME;
 
 

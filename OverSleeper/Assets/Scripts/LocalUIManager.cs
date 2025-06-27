@@ -7,6 +7,9 @@ public class LocalUIManager : MonoBehaviour
     //MoneyRelayスクリプト呼び出し用
     MoneyRelay moneyrelay;
     DateRelay daterelay;
+
+    // ゲーム内でのヒントなどを生成するもの
+    GenerateText geneText;
     #region UI
     [Header("資金表示のテキスト"), SerializeField] Text moneyText;
     //[Header("維持費表示のテキスト"), SerializeField] Text maintainText;
@@ -31,6 +34,8 @@ public class LocalUIManager : MonoBehaviour
 
     private void Start()
     {
+        geneText = GameObject.Find("GeneratePos").GetComponent<GenerateText>();
+
         //Monovi形式じゃないのでnewで代入
         moneyrelay = new MoneyRelay();
         //Monovi形式じゃないのでnewを代入
@@ -86,6 +91,9 @@ public class LocalUIManager : MonoBehaviour
         }
         // UI更新
         UIDisp();
+
+        // ヒントなどを生成して表示
+        geneText.TIPSText();
     }
 #endif
     #endregion
@@ -99,6 +107,8 @@ public class LocalUIManager : MonoBehaviour
         moneyrelay = new MoneyRelay();
         //Monovi形式じゃないのでnewを代入
         daterelay = new DateRelay();
+
+        geneText = GameObject.Find("GeneratePos").GetComponent<GenerateText>();
 
         // 空白文字のスクリプト
         #region
@@ -123,6 +133,9 @@ public class LocalUIManager : MonoBehaviour
 
         // UI更新
         UIDisp();
+
+        // ヒントなどを生成して表示
+        geneText.TIPSText();
     }
 
 
