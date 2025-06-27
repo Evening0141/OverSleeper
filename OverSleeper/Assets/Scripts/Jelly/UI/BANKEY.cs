@@ -38,6 +38,7 @@ public class BANKEY : MonoBehaviour, IChildBehavior
             else // ‚¢‚È‚¢ê‡‚Ìˆ—
             {
                 Debug.Log("ŒëBAN‚©‚æ");
+                DataRelay.Dr.Money = DataRelay.Dr.Money / 2;
             }
         }
         else
