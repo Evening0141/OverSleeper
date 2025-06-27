@@ -155,6 +155,7 @@ public class DataRelay : MonoBehaviour
     }
     #endregion
 
+    // チーター管理
     private bool Cheating = false;
 
     public bool IsCheat

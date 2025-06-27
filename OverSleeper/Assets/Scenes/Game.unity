@@ -4075,7 +4075,7 @@ MonoBehaviour:
   charSpacing: 10
   charOffsetY: 0
   charDelay: 0.5
-  spawnInterval: 34
+  spawnInterval: 128
   highlightColor: {r: 0.29019606, g: 0.7952021, b: 1, a: 1}
   colorMarkers: 260025002400
 --- !u!1 &694288567

@@ -6,7 +6,7 @@ public class MoveRectSmooth : MonoBehaviour
     public Vector2 direction = Vector2.left;  // ˆÚ“®•ûŒü
     public float speed = 150f;                // ˆÚ“®‘¬“xipx/secj
 
-    const float _DELETEPOS = -2000.0f;
+    const float _DELETEPOS = -2100.0f;
 
     private RectTransform rectTransform;
 
