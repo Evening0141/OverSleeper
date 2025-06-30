@@ -32,6 +32,7 @@ public class ServerKey : MonoBehaviour,IChildBehavior
     private void Cost()
     {
         level = DataRelay.Dr.Server;
+        // サーバーだけ少し安く設定しておく
         cost = Calculation.GetNextLevelCost(level);
     }
 
