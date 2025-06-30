@@ -13,7 +13,7 @@ public class BANKEY : MonoBehaviour, IChildBehavior
     private bool CanBan = true;
 
     // クールタイム計算用
-    private const float _TIME = 3.0f;
+    private const float _TIME = 5.0f;
     private float _timer = _TIME;
 
 
@@ -38,6 +38,8 @@ public class BANKEY : MonoBehaviour, IChildBehavior
             else // いない場合の処理
             {
                 Debug.Log("誤BANかよ");
+                DataRelay.Dr.Money = DataRelay.Dr.Money / 2; // 半額に
+                DataRelay.Dr.Famous -= 1; // 人気度を一つ落とす
             }
         }
         else
