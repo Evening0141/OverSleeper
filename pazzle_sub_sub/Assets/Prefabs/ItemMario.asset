@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b53dd21b946aa2a4aaf0735c72a0796f, type: 3}
   m_Name: ItemMario
   m_EditorClassIdentifier: 
+  score: 200
   sprite: {fileID: 21300000, guid: 7631b692c8c4ff3499709efe9421c39c, type: 3}
   shape: {fileID: 11400000, guid: 376a20bdfc081af44b2b2d0332d2193c, type: 2}

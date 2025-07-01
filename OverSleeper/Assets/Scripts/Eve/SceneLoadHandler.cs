@@ -19,6 +19,11 @@ public class SceneLoadHandler : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    /// <summary>
+    /// Scene切り替え直後に処理されるであろうモノ
+    /// </summary>
+    /// <param name="scene"></param>
+    /// <param name="mode"></param>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         //シーンの切り替わり直後で、一度も実行されていないなら処理される
