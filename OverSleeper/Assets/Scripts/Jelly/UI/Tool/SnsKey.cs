@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AdKey : MonoBehaviour, IChildBehavior
+public class SnsKey : MonoBehaviour, IChildBehavior
 {
     Text levelText;  // レベルを表示するテキスト
     Text moneyText;  // 費用を表示するテキスト
 
     private int cost;
     private int level = -1;
+    private const int BASE = 50;
 
     // テキスト反映
 
@@ -27,14 +28,14 @@ public class AdKey : MonoBehaviour, IChildBehavior
         moneyText = child_money.GetComponentInChildren<Text>();
         // 表示
         levelText.text = "Lv." + level.ToString();
-        moneyText.text = "費用:" + cost.ToString() + "万";
+        moneyText.text = "費用:" + cost.ToString("N0") + "万";
     }
 
     // コスト計算
     private void Cost()
     {
         level = DataRelay.Dr.Sns;
-        cost = Calculation.GetNextLevelCost(level);
+        cost = Calculation.GetNextLevelCost(level) * BASE;
     }
 
     // インターフェース
@@ -51,7 +52,7 @@ public class AdKey : MonoBehaviour, IChildBehavior
             Cost();
             // 表示
             levelText.text = "Lv." + level.ToString();
-            moneyText.text = "費用:" + cost.ToString() + "万";
+            moneyText.text = "費用:" + cost.ToString("N0") + "万";
         }
     }
 }

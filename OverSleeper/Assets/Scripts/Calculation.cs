@@ -17,7 +17,7 @@ public static class Calculation
     /// <returns>次レベルまでの必要コスト</returns>
     public static int GetNextLevelCost(int currentLevel)
     {
-        float cost = COST_BASE * (float)Math.Pow(COST_MULTI, currentLevel);
+        float cost = COST_BASE / 3 * (float)Math.Pow(COST_MULTI, currentLevel);
         return Mathf.CeilToInt(cost); // 小数切り上げて整数に変換
     }
 
