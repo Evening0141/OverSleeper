@@ -10,7 +10,7 @@ public class CharacterBase : MonoBehaviour
     protected float hit;  　　 // 射撃精度
     protected float moveSpd;   // 移動速度
     protected float resSpd;    // リスポーンクールタイム
-    protected bool IsC = false; // チート使用   
+    protected bool isDown = false; // 死亡
 
     [Header("基本設定")]
     [SerializeField] protected Transform firePoint;         // 弾の発射位置
@@ -21,7 +21,7 @@ public class CharacterBase : MonoBehaviour
     [SerializeField] protected Animator anim;               // アニメーター
 
     protected Vector3 moveDirection;                         // 移動方向
-    protected float directionChangeInterval = 5f;            // 移動方向変更間隔
+    protected float directionChangeInterval = 7f;            // 移動方向変更間隔
     protected float directionTimer = 0f;                     // 移動方向変更用タイマー
     protected float shotCooldown = 1f;                       // 弾のクールダウン
     protected float shotTimer = 0f;                          // 弾発射タイマー
@@ -76,7 +76,7 @@ public class CharacterBase : MonoBehaviour
         // 弾の生成と速度設定
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.LookRotation(shootDirection));
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        const float bulletSpd = 5000.0f;
+        const float bulletSpd = 20000.0f;
 
         if (rb != null)
         {
@@ -97,7 +97,7 @@ public class CharacterBase : MonoBehaviour
     }
     // 壁検知
     public virtual bool WallSearch()
-    {  // 壁検知(前方1m)
+    {  // 壁検知
         return Physics.Raycast(transform.position, moveDirection, 5f, wallLayer);
     }
     // ダメージを受ける処理
@@ -112,12 +112,9 @@ public class CharacterBase : MonoBehaviour
         }
     }
     // 死亡処理
-    protected virtual void Die()
+    public virtual void Die()
     {
         Debug.Log($"{nameId} は倒れた");
-        // この個体がなくなるまで同じ名前は存在させない
-        NameGenerator.ReleaseName(nameId); // 名前の開放
-        gameObject.SetActive(false);
     }
     private IEnumerator RespawnRoutine()
     {
@@ -210,14 +207,30 @@ public class CharacterBase : MonoBehaviour
         moveDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
         directionTimer = 0f;
     }
+
+    /// <summary>
+    /// キャラ識別名を返却
+    /// </summary>
+    public string GetUserID
+    {
+        get { return nameId; }
+    }
+    /// <summary>
+    /// キャラの生存状況を返却
+    /// </summary>
+    public bool IsDown
+    {
+        get { return isDown; }
+    }
+
+
     // 継承先のスクリプトでの共通スタート
     protected void　CharaSetUp()
     {
         hp = 100;                                 // 初期HP
         nameId = NameGenerator.GetUniqueName();   // 識別用ID
-        moveSpd = 40f;                           // 移動速度
-        hit = 0.95f;                              // 射撃精度
-        resSpd = 5f;                              // 復活速度
+        moveSpd = 20f;                           // 移動速度
+        hit = 0.75f;                              // 射撃精度
         anim.Play("Idle");                        // 初期アニメーション
         ChangeDirection();                        // 初期方向
         SetRandomMoveDuration();                  // 最初の移動時間を設定
@@ -278,5 +291,6 @@ public class CharacterBase : MonoBehaviour
             }
             anim.Play("Idle");
         }
+       // Debug.Log($"{nameId} は{isDown}");
     }
 }
