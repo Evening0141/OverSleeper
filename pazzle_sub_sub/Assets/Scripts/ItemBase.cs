@@ -7,7 +7,7 @@ public class ItemBase : MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDragHan
     private bool dragFlag = false;
 
     public int itemNo = 0; // アイテム番号
-    private ItemData data; // 自身のアイテムデータ
+    public ItemData data; // 自身のアイテムデータ
     public SpriteRenderer sprite; // 子のスプライト
     int[,] shapeArray;
     int width, height;
@@ -199,10 +199,15 @@ public class ItemBase : MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDragHan
 
     void Update()
     {
+        if(!PuzzleManager.Ins.IsGame)
+        {
+            this.gameObject.GetComponent<ItemBase>().enabled = false;
+        }
+
         if(dragFlag)
         {
             // 右クリックで時計回り
-            if(Input.GetMouseButtonDown(1))
+            if(Input.GetKeyDown(KeyCode.Space))
             {
                 // 90度回転
                 Rotate90();

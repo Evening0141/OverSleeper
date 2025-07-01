@@ -156,6 +156,9 @@ MonoBehaviour:
   gridObj: {fileID: 569846915}
   itemObj: {fileID: 412834231478467029, guid: 74961bb601f385b49a5f1657e99874a9, type: 3}
   createObj: {fileID: 0}
+  timerCmp: {fileID: 1995050814}
+  scoreCmp: {fileID: 434598216}
+  totalTimer: 20
 --- !u!4 &110593319
 Transform:
   m_ObjectHideFlags: 0
@@ -637,7 +640,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -784,7 +787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

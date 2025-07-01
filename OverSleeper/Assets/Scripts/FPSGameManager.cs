@@ -196,6 +196,7 @@ public class FPSGameManager : MonoBehaviour
         for (int i = activePlayerSlots.Count - 1; i >= 0; i--)
         {
             var slot = activePlayerSlots[i];
+            slot.character.Release(); // 名前開放
             Destroy(slot.playerObj);
             activePlayerSlots.RemoveAt(i); // 全て削除
         }
@@ -237,6 +238,7 @@ public class FPSGameManager : MonoBehaviour
         for (int i = activePlayerSlots.Count - 1; i >= 0; i--)
         {
             var slot = activePlayerSlots[i];
+            slot.character.Release(); // 名前開放
             Destroy(slot.playerObj);
             activePlayerSlots.RemoveAt(i); // 全て削除
         }

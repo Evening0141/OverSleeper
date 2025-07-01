@@ -24,6 +24,7 @@
         isDown = true; // 死亡
         //gameObject.SetActive(false);
     }
+
     /// <summary>
     /// プレイヤーのメイン処理
     /// </summary>

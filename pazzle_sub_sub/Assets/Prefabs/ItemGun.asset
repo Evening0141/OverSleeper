@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b53dd21b946aa2a4aaf0735c72a0796f, type: 3}
   m_Name: ItemGun
   m_EditorClassIdentifier: 
+  score: 4
   sprite: {fileID: 21300000, guid: 09074725c8bda824ca5ae860f5c77d32, type: 3}
   shape: {fileID: 11400000, guid: 507001ae6f938d64c846edb42a683514, type: 2}
