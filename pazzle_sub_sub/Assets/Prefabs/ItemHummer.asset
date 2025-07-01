@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b53dd21b946aa2a4aaf0735c72a0796f, type: 3}
-  m_Name: ItemHana
+  m_Name: ItemHummer
   m_EditorClassIdentifier: 
-  score: 100
-  sprite: {fileID: 21300000, guid: bb1d31c00aca800429d30cab987eca5c, type: 3}
-  shape: {fileID: 11400000, guid: 864ed13e40fe82a4eaaa2db800179988, type: 2}
+  score: 250
+  sprite: {fileID: 21300000, guid: e795e0798e2fc6b4c973887065a0ea5d, type: 3}
+  shape: {fileID: 11400000, guid: 1f6428b163802ed48af022f280f67ae7, type: 2}
