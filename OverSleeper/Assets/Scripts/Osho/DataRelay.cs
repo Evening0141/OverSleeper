@@ -48,9 +48,9 @@ public class DataRelay : MonoBehaviour
     #endregion
     /* レベル関連 */
     #region Level
-    private int _server = 1;  //サーバーレベル用の変数
-    private int _debug = 1;   //デバッグ用の変数
-    private int _sns = 1;     //広告用の変数
+    private int _server = 0;  //サーバーレベル用の変数
+    private int _debug = 0;   //デバッグ用の変数
+    private int _sns = 0;     //広告用の変数
 
     public int Server //設備レベル(サーバー)用のゲッターセッター
     {

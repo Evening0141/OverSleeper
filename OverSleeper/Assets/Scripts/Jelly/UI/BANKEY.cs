@@ -7,7 +7,7 @@ public class BANKEY : MonoBehaviour, IChildBehavior
     // 対象のRect
     [SerializeField] RectTransform rct;
     //オブジェクト座標を元に次のアニメーションが可能かチェック
-    const float posY = 600.0f;
+    const float posY = 550.0f;
 
     // BANの使用状況
     private bool CanBan = true;
