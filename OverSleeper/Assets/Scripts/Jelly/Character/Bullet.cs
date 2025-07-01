@@ -14,31 +14,29 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // 生成
-        GameObject hitObj;
-        // 当たったオブジェクト座標
-        Vector3 hitPos=other.transform.position;
-        // オフセット
-        float ofsY = 4.0f;
-        hitPos.y = ofsY;
         // 敵以外に命中したら即削除
         if (!other.CompareTag("Character"))
         {
             Destroy(gameObject);
         }
-        else // 敵Hitの場合
+        // 生成
+        GameObject hitObj;
+        // 当たったオブジェクト座標
+        Vector3 hitPos = other.transform.position;
+        // オフセット
+        float ofsY = 4.0f;
+        hitPos.y = ofsY;
+
+        // CharacterBase を取得してダメージを与える
+        CharacterBase target = other.GetComponent<CharacterBase>();
+        if (target != null)
         {
-            // CharacterBase を取得してダメージを与える
-            CharacterBase target = other.GetComponent<CharacterBase>();
-            if (target != null)
-            {
-                target.TakeDamage(damage);
-                // エフェクト生成
-                hitObj = Instantiate(hitEffObj, hitPos, Quaternion.identity);
-                Destroy(hitObj, lifeTime);
-            }
-            Debug.Log("HIT");
-            Destroy(gameObject);
+            target.TakeDamage(damage);
+            // エフェクト生成
+            hitObj = Instantiate(hitEffObj, hitPos, Quaternion.identity);
+            Destroy(hitObj, lifeTime);
         }
+        Debug.Log("HIT");
+        Destroy(gameObject);
     }
 }
