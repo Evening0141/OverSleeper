@@ -7,19 +7,22 @@ public class LocalUIManager : MonoBehaviour
     //MoneyRelayスクリプト呼び出し用
     MoneyRelay moneyrelay;
     DateRelay daterelay;
+    Famous famous; // 人気度計算用
+
+    // ゲーム内でのヒントなどを生成するもの
+    GenerateText geneText;
     #region UI
     [Header("資金表示のテキスト"), SerializeField] Text moneyText;
     //[Header("維持費表示のテキスト"), SerializeField] Text maintainText;
     [Header("年表示のテキスト"), SerializeField] Text yearText;
     [Header("月表示のテキスト"), SerializeField] Text monthText;
     [Header("人気度表示のテキスト"), SerializeField] Text famousText;
-    [Header("知名度表示のテキスト"), SerializeField] Text popularText;
+    //[Header("知名度表示のテキスト"), SerializeField] Text popularText;
     [Header("ユーザー数表示のテキスト"), SerializeField] Text userText;
     #endregion  
 
     // DataRelayから値を受け取り要素番号とする
     private string[] status_USER = { "減少中","一定","上昇中"};
-    private string[] status_POPULAR = { "F","E","D","C","B","A","S"};
 
     // UnityEditorの処理
     #region DEBUG
@@ -31,10 +34,14 @@ public class LocalUIManager : MonoBehaviour
 
     private void Start()
     {
+        geneText = GameObject.Find("GeneratePos").GetComponent<GenerateText>();
+
         //Monovi形式じゃないのでnewで代入
         moneyrelay = new MoneyRelay();
         //Monovi形式じゃないのでnewを代入
         daterelay = new DateRelay();
+        // クラス生成
+        famous = new Famous();
         // 実行時に特定オブジェクトを探す
         debugBlocker = GameObject.Find("UIManager");
 
@@ -66,7 +73,9 @@ public class LocalUIManager : MonoBehaviour
         //資金計算処理の実行
         moneyrelay.MoneyGrow();
         //年月処理の実行
-        daterelay.DateGrow(); 
+        daterelay.DateGrow();
+        // 人気度計算
+        famous.FamousCount();
         Debug.Log("現在資金" + DataRelay.Dr.Money);
         if (debugBlocker != null)
         {
@@ -84,7 +93,11 @@ public class LocalUIManager : MonoBehaviour
                 button.ButtonUpdate();
             }
         }
+        // UI更新
         UIDisp();
+
+        // ヒントなどを生成して表示
+        geneText.TIPSText();
     }
 #endif
     #endregion
@@ -94,6 +107,15 @@ public class LocalUIManager : MonoBehaviour
     // UIManagerで呼び出す形で作成
     public void LocalStart()
     {
+        //Monovi形式じゃないのでnewで代入
+        moneyrelay = new MoneyRelay();
+        //Monovi形式じゃないのでnewを代入
+        daterelay = new DateRelay();
+        // クラス生成
+        famous = new Famous();
+
+        geneText = GameObject.Find("GeneratePos").GetComponent<GenerateText>();
+
         // 空白文字のスクリプト
         #region
         //// シーン内の処理を読み込む
@@ -110,7 +132,17 @@ public class LocalUIManager : MonoBehaviour
 
     public void LocalUpdate()
     {
+        //資金計算処理の実行
+        moneyrelay.MoneyGrow();
+        //年月処理の実行
+        daterelay.DateGrow();
+        // 人気度計算
+        famous.FamousCount();
+        // UI更新
+        UIDisp();
 
+        // ヒントなどを生成して表示
+        geneText.TIPSText();
     }
 
 
@@ -126,7 +158,6 @@ public class LocalUIManager : MonoBehaviour
         yearText.text = data.Year.ToString();
         monthText.text = data.Month.ToString();
         famousText.text = GenerateStars.Generate(data.Famous);
-        popularText.text = status_POPULAR[data.Popular];
         userText.text = status_USER[data.User];
     }
     //テキストカラー変更用

@@ -3,6 +3,7 @@ using UnityEngine;
 public class SaveKey : MonoBehaviour,IChildBehavior
 {
     [SerializeField] private SaveJSON saveJSON;
+
     // インターフェース
     // セーブ機能
     public void Execute()

@@ -28,7 +28,7 @@ public class DebugKey : MonoBehaviour, IChildBehavior
         moneyText = child_money.GetComponentInChildren<Text>();
         // 表示
         levelText.text = "Lv." + level.ToString();
-        moneyText.text = "費用:" + cost.ToString() + "万";
+        moneyText.text = "費用:" + cost.ToString("N0") + "万";
     }
     private void Update()
     {
@@ -55,7 +55,7 @@ public class DebugKey : MonoBehaviour, IChildBehavior
             Cost();
             // 表示
             levelText.text = "Lv." + level.ToString();
-            moneyText.text = "費用:" + cost.ToString() + "万";
+            moneyText.text = "費用:" + cost.ToString("N0") + "万";
         }
     }
 
