@@ -8,8 +8,8 @@ public class MoneyRelay
     public  float MONEY_COOLTIME = 2f; //MONEYのクールタイム宣言
 
     private const int Server_grow = 3;//サーバー用の定数
-    private const int Debug_grow = 12;//デバッグ用の定数
-    private const int Sns_grow = 40;//SNS用の定数
+    private const int Debug_grow = 30;//デバッグ用の定数
+    private const int Sns_grow = 100;//SNS用の定数
 
     private const int MONEY_MAX = 1000000000; //MONEYの上限
 
