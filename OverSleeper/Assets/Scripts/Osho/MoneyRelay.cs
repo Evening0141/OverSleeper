@@ -1,9 +1,9 @@
-
 using UnityEngine;
 
 public class MoneyRelay
 {
     private int money = 0; //資産用の変数
+    private int retMoney = 0; // 外部に送る資産
     private float timer = 0; //cooltime用のtimer変数
     public  float MONEY_COOLTIME = 2f; //MONEYのクールタイム宣言
 
@@ -13,11 +13,11 @@ public class MoneyRelay
 
     private const int MONEY_MAX = 1000000000; //MONEYの上限
 
+  
 
     public void MoneyGrow()//別のスクリプトで呼出し
     {
         var dr = DataRelay.Dr;
-
 
         //時間計算用
         if (dr.Famous == 0)
@@ -48,10 +48,34 @@ public class MoneyRelay
             {
                 DataRelay.Dr.Money = MONEY_MAX;//超えた場合MONEY_MAXに固定
             }
-
-
             timer = 0;
             money = 0;
+        }
+    }
+
+    ///
+    public void MoneyCalc()
+    {
+        var dr = DataRelay.Dr;
+
+        //cooltimeごとに資金を定数分増やす処理
+        money = Calculation.GetMoney(money) +
+          dr.Debug_ * Debug_grow +
+          dr.Server * Server_grow +
+          dr.Sns * Sns_grow;
+
+        // 計算とは別にコピーする
+        retMoney = money;
+
+        money = 0;
+    }
+
+    // 収入の値
+    public int ReturnMoney
+    {
+        get
+        {
+            return retMoney;
         }
     }
        
