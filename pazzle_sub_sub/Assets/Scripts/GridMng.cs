@@ -150,4 +150,37 @@ public class GridMng : MonoBehaviour
         }
         return true;
     }
+
+    //スコア計算
+    public int CalculationScore()
+    {
+        //アイテム配列に何が入っているか取得、スコア計算
+        int score = 0;
+        //ハッシュを使って管理
+        //リストよりも軽いので、重複チェック等に使える
+        HashSet<GameObject> hash = new HashSet<GameObject>();
+
+        for(int y=0;y<items.GetLength(0);++y)
+        {
+            for(int x =0;x<items.GetLength(1);++x)
+            {
+                GameObject obj = items[x, y];
+                if (obj != null)
+                {
+                    //すでに加算されたオブジェクトかチェック
+                    //ハッシュに登録されたものがあるかチェック
+                    if (!hash.Contains(obj))
+                    {
+                        ItemBase itemBaseCmp = obj.GetComponent<ItemBase>();
+
+                        score += itemBaseCmp.data.score;
+
+                        hash.Add(obj);
+                    }
+                }
+            }
+        }
+        return score;
+    }
+
 }

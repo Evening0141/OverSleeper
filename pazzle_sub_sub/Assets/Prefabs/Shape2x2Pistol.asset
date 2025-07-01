@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b53dd21b946aa2a4aaf0735c72a0796f, type: 3}
-  m_Name: ItemHana
+  m_Script: {fileID: 11500000, guid: 4f0202bce8f257c41b04d7292d8a783a, type: 3}
+  m_Name: Shape2x2Pistol
   m_EditorClassIdentifier: 
-  score: 100
-  sprite: {fileID: 21300000, guid: bb1d31c00aca800429d30cab987eca5c, type: 3}
-  shape: {fileID: 11400000, guid: 864ed13e40fe82a4eaaa2db800179988, type: 2}
+  width: 2
+  height: 2
+  cells: 01000000000000000100000001000000
