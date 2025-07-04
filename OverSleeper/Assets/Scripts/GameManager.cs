@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     private static GameManager instance; // Singletonインスタンス
     FadeInOut fade;  // フェード機能
+
+    AudioManager audMng;
     #endregion
 
     /// <summary>
@@ -60,6 +62,7 @@ public class GameManager : MonoBehaviour
                 type = SceneType.Title;
                 // コンポーネント取得とかのスタートメソッドを任意で呼び出す
                 Ready();
+                audMng = new AudioManager();
                 break;
             case "Game":
                 type = SceneType.Game;
@@ -67,6 +70,8 @@ public class GameManager : MonoBehaviour
                 Ready();
                 // 一回のみ実行
                 manager_UI.LocalCall_GAME();
+                audMng = new AudioManager();
+
 
                 break;
             case "GameOver":
@@ -117,7 +122,12 @@ public class GameManager : MonoBehaviour
     private void HandleTitleScene()
     {
         Debug.Log("タイトルシーンに遷移しました");
+
         manager_UI.UIGeneralUp();
+
+        audMng.VolumeSet();
+        audMng.Play_BGM();
+        audMng.Play_SE();
 
         //fade = FadeInOut.CreateInstance(); // フェードオブジェクトの生成
         //fade.LoadScene("Game");
@@ -129,6 +139,10 @@ public class GameManager : MonoBehaviour
         Debug.Log("ゲームシーンに遷移しました");
         manager_UI.UIGeneralUp();
         manager_UI.LocalCall_Up();
+
+        audMng.VolumeSet();
+        audMng.Play_BGM();
+        audMng.Play_SE();
         // 
     }
 

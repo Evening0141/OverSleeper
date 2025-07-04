@@ -155,6 +155,42 @@ public class DataRelay : MonoBehaviour
     }
     #endregion
 
+    /* 音関連 */
+    #region Sound
+    // BGM名
+    public enum BGM_Name
+    {
+       bitFight,cyber,Distorted_Bite, Spining_Cat,None
+    }
+    // SE名
+    public enum SE_Name
+    {
+        Enter,Click, None
+    }
+
+    private BGM_Name bgmName=BGM_Name.bitFight;
+    private SE_Name seName = SE_Name.None;
+
+    // サウンド名の受け渡し
+    /// <summary>
+    /// BGM用やり取り
+    /// </summary>
+    public BGM_Name Data_BGM
+    {
+        set { bgmName = value; }
+        get { return bgmName; }
+    }
+
+    /// <summary>
+    /// SE用やり取り
+    /// </summary>
+    public SE_Name Data_SE
+    {
+        set { seName = value; }
+        get { return seName;  }
+    }
+
+    #endregion
     // チーター管理
     private bool Cheating = false;
 
