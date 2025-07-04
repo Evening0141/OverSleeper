@@ -18,7 +18,7 @@ public class LocalUIManager : MonoBehaviour
     [Header("月表示のテキスト"), SerializeField] Text monthText;
     [Header("人気度表示のテキスト"), SerializeField] Text famousText;
     //[Header("知名度表示のテキスト"), SerializeField] Text popularText;
-    [Header("ユーザー数表示のテキスト"), SerializeField] Text userText;
+    [Header("収入率のテキスト"), SerializeField] Text incomeText;
     #endregion  
 
     // DataRelayから値を受け取り要素番号とする
@@ -50,7 +50,8 @@ public class LocalUIManager : MonoBehaviour
             Debug.Log("処理は実行しません");
             return;  // 処理を止める
         }
-
+        // 毎秒入手する資金の計算
+        moneyrelay.MoneyCalc();
         // シーン内の処理を読み込む
         spaceCreate = FindObjectsOfType<TextSpacer>(true);
         // 処理実行
@@ -93,6 +94,8 @@ public class LocalUIManager : MonoBehaviour
                 button.ButtonUpdate();
             }
         }
+        // 毎秒入手する資金の計算
+        moneyrelay.MoneyCalc();
         // UI更新
         UIDisp();
 
@@ -126,20 +129,26 @@ public class LocalUIManager : MonoBehaviour
         //    text.TextSpace();
         //}
         #endregion
+        // 毎秒入手する資金の計算
+        moneyrelay.MoneyCalc();
         // UI更新
         UIDisp();
     }
 
     public void LocalUpdate()
     {
+        // 毎秒入手する資金の計算
+        moneyrelay.MoneyCalc();
+        // UI更新
+        UIDisp();
+
         //資金計算処理の実行
         moneyrelay.MoneyGrow();
         //年月処理の実行
         daterelay.DateGrow();
         // 人気度計算
         famous.FamousCount();
-        // UI更新
-        UIDisp();
+       
 
         // ヒントなどを生成して表示
         geneText.TIPSText();
@@ -151,21 +160,20 @@ public class LocalUIManager : MonoBehaviour
     {
         var data = DataRelay.Dr;
         // 初期の反映
-
+        incomeText.text = moneyrelay.ReturnMoney.ToString("N0");
         //三桁ごとに区切るToString("N0")
         moneyText.text = data.Money.ToString("N0");
        // maintainText.text = data.Maintain.ToString();
         yearText.text = data.Year.ToString();
         monthText.text = data.Month.ToString();
         famousText.text = GenerateStars.Generate(data.Famous);
-        userText.text = status_USER[data.User];
     }
-    //テキストカラー変更用
-    private void ColDisp()
-    {
-        if(status_USER[DataRelay.Dr.User] == "上昇中")
-        {
-            ColorChange.ChangeCol(userText);
-        }
-    }
+    ////テキストカラー変更用
+    //private void ColDisp()
+    //{
+    //    if(status_USER[DataRelay.Dr.User] == "上昇中")
+    //    {
+    //        ColorChange.ChangeCol(incomeText);
+    //    }
+    //}
 }

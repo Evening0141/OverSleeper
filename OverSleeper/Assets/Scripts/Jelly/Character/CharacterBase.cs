@@ -208,6 +208,12 @@ public class CharacterBase : MonoBehaviour
         directionTimer = 0f;
     }
 
+    public void Release()
+    {
+        // この個体がなくなるまで同じ名前は存在させない
+        NameGenerator.ReleaseName(nameId); // 名前の開放
+    }
+
     /// <summary>
     /// キャラ識別名を返却
     /// </summary>
@@ -230,7 +236,7 @@ public class CharacterBase : MonoBehaviour
         hp = 100;                                 // 初期HP
         nameId = NameGenerator.GetUniqueName();   // 識別用ID
         moveSpd = 20f;                           // 移動速度
-        hit = 0.75f;                              // 射撃精度
+        hit = 0.85f;                              // 射撃精度
         anim.Play("Idle");                        // 初期アニメーション
         ChangeDirection();                        // 初期方向
         SetRandomMoveDuration();                  // 最初の移動時間を設定
