@@ -31,7 +31,7 @@ public class LocalUIManager : MonoBehaviour
 #if UNITY_EDITOR
     private SelectButton[] selButtons; // UIButtonの配列
     GameObject debugBlocker;
-
+    AudioManager audMng;
     private void Start()
     {
         geneText = GameObject.Find("GeneratePos").GetComponent<GenerateText>();
@@ -50,6 +50,10 @@ public class LocalUIManager : MonoBehaviour
             Debug.Log("処理は実行しません");
             return;  // 処理を止める
         }
+
+        //audMng = new AudioManager();
+        //DataRelay.Dr.Data_BGM = DataRelay.BGM_Name.Distorted_Bite;
+
         // 毎秒入手する資金の計算
         moneyrelay.MoneyCalc();
         // シーン内の処理を読み込む
@@ -77,6 +81,9 @@ public class LocalUIManager : MonoBehaviour
         daterelay.DateGrow();
         // 人気度計算
         famous.FamousCount();
+
+        //audMng.VolumeSet();
+        //audMng.Play();
         Debug.Log("現在資金" + DataRelay.Dr.Money);
         if (debugBlocker != null)
         {

@@ -20,6 +20,7 @@ public class VolumeController : MonoBehaviour
         PlayerPrefs.SetFloat(VolumeKey, volume);
         PlayerPrefs.Save();
         ApplyVolume(volume);
+        Debug.Log("âπó Çì«Ç›çûÇ›Ç‹ÇµÇΩ: " +Å@volume);
     }
 
     public void LOAD()

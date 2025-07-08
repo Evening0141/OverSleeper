@@ -15,6 +15,8 @@ public class SelectButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         selImg.enabled = true;   // 表示
         isHolding = true;        // 触れている
+        // SEセット
+        DataRelay.Dr.Data_SE = DataRelay.SE_Name.Enter;
         Debug.Log("UIに触れた");
     }
 
@@ -44,6 +46,9 @@ public class SelectButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         {
             if (child != null)
             {
+                // SEセット
+                DataRelay.Dr.Data_SE = DataRelay.SE_Name.Click;
+
                 // 実行
                 child.Execute();
             }
