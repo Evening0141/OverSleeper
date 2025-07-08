@@ -431,6 +431,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   anim: {fileID: 4478111854531882704}
+  iconUrl: https://cdn.discordapp.com/attachments/1378897220203450458/1391957111222833302/chef.png?ex=686dc894&is=686c7714&hm=31b78129c30a675cd03cc4b96cf207b3e500746202adc1c8aeacf300e023ce24&
 --- !u!65 &5961825152943258928
 BoxCollider:
   m_ObjectHideFlags: 0

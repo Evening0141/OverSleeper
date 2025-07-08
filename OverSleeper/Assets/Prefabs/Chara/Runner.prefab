@@ -78,6 +78,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   anim: {fileID: 8498832060941652327}
+  iconUrl: https://cdn.discordapp.com/attachments/1378897220203450458/1391957111495200879/runner.png?ex=686dc894&is=686c7714&hm=5b542bcd159332caa794f446261043b9aa2ad83a41b428e122cb60772cc8289b&
 --- !u!65 &3602386468566751689
 BoxCollider:
   m_ObjectHideFlags: 0

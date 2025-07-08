@@ -19,6 +19,7 @@ public class CharacterBase : MonoBehaviour
     [SerializeField] protected LayerMask wallLayer;         // 壁用レイヤー
     [SerializeField] protected LayerMask enemyLayer;        // 敵用レイヤー
     [SerializeField] protected Animator anim;               // アニメーター
+    [SerializeField] protected string iconUrl;              // キャラごとのDiscord用アイコンURL
 
     protected Vector3 moveDirection;                         // 移動方向
     protected float directionChangeInterval = 7f;            // 移動方向変更間隔
@@ -37,7 +38,17 @@ public class CharacterBase : MonoBehaviour
 
     protected bool isInCombat = false;                       // 撃ち合い中かどうか
     protected float combatStartTime = 0f;                    // 撃ち合い開始時間
+
     #endregion
+
+    // Discordにメッセージを送信
+    public void SendDiscordMessage(string message)
+    {
+        if (DiscordWebhookSender.Instance != null)
+        {
+            DiscordWebhookSender.Instance.SendMessageToDiscord(message, nameId, iconUrl);
+        }
+    }
     // 移動処理
     public virtual void Move() {
         directionTimer += Time.deltaTime;
