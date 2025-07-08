@@ -431,7 +431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.46970266, g: 0.8301887, b: 0.37332377, a: 1}
+  m_Color: {r: 0.63836473, g: 0.7058937, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3871,7 +3871,7 @@ GameObject:
   - component: {fileID: 612856833}
   - component: {fileID: 612856832}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: FPS_Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6607,7 +6607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.47058824, g: 0.83137256, b: 0.3764706, a: 1}
+  m_Color: {r: 0.63836473, g: 0.7058937, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8152,7 +8152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.47058824, g: 0.83137256, b: 0.3764706, a: 1}
+  m_Color: {r: 0.63836473, g: 0.7058937, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8776,6 +8776,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 1790570625}
   rct: {fileID: 1790570624}
+  text: {fileID: 1600668278}
 --- !u!4 &1559262826 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4589606727732830, guid: 6d6892a877c0a664cb5a53eb2dd13c88, type: 3}
@@ -11441,7 +11442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.47058824, g: 0.83137256, b: 0.3764706, a: 1}
+  m_Color: {r: 0.63836473, g: 0.7058937, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
