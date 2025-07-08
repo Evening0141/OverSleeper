@@ -7,8 +7,8 @@ public class DiscordWebhookSender : MonoBehaviour
 {
     public static DiscordWebhookSender Instance;
 
-    [Header("Webhook設定JSONパス")]
-    public string webhookJsonPath = "Config/webhook.json";
+    // StreamingAssets内のパス（ファイル名だけでOK）
+    public string webhookJsonFileName = "webhook.json";
 
     private string webhookUrl;
 
@@ -28,7 +28,8 @@ public class DiscordWebhookSender : MonoBehaviour
 
     void LoadWebhookUrl()
     {
-        string fullPath = Path.Combine(Application.dataPath, webhookJsonPath);
+        string fullPath = Path.Combine(Application.streamingAssetsPath, webhookJsonFileName);
+
         if (!File.Exists(fullPath))
         {
             Debug.LogWarning("Webhook設定ファイルが見つかりません: " + fullPath);
@@ -40,7 +41,7 @@ public class DiscordWebhookSender : MonoBehaviour
             string json = File.ReadAllText(fullPath);
             WebhookConfig config = JsonUtility.FromJson<WebhookConfig>(json);
             webhookUrl = config.webhookUrl;
-            Debug.Log("Webhook URLを読み込みました");
+            Debug.Log("Webhook URLを読み込みました: " + webhookUrl);
         }
         catch (System.Exception ex)
         {
@@ -71,7 +72,7 @@ public class DiscordWebhookSender : MonoBehaviour
             content = message
         });
 
-        UnityWebRequest request = new UnityWebRequest(webhookUrl, "POST");
+        using UnityWebRequest request = new UnityWebRequest(webhookUrl, "POST");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonPayload);
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
@@ -79,7 +80,11 @@ public class DiscordWebhookSender : MonoBehaviour
 
         yield return request.SendWebRequest();
 
+#if UNITY_2020_1_OR_NEWER
         if (request.result != UnityWebRequest.Result.Success)
+#else
+        if (request.isNetworkError || request.isHttpError)
+#endif
         {
             Debug.LogError("Discord送信エラー: " + request.error);
         }
